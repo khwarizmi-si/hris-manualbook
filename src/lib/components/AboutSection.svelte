@@ -1,70 +1,44 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Component } from 'svelte';
-	import {
-		Users,
-		Clock,
-		CalendarDays,
-		FileSignature,
-		Timer,
-		LogOut,
-		ArrowRight,
-		CheckCircle,
-		Sparkles,
-		Star
-	} from 'lucide-svelte';
+	import { ArrowRight, Globe, ShieldCheck, Bell, MapPin, Layers, FileCheck } from 'lucide-svelte';
 
-	interface Service {
-		icon: Component;
-		badge: Component;
-		title: string;
-		desc: string;
-		side: 'left' | 'right';
-	}
-
-	const services: Service[] = [
+	const highlights = [
 		{
-			icon: Users,
-			badge: Sparkles,
-			title: 'Data Karyawan',
-			desc: 'Kelola seluruh data kepegawaian secara digital dan terstruktur — dari biodata, jabatan, rekening, hingga dokumen BPJS dalam satu platform terintegrasi.',
+			icon: Globe,
+			title: 'Akses dari Mana Saja',
+			desc: 'Berbasis web — cukup buka browser, tidak perlu install aplikasi. Tersedia di desktop maupun ponsel.',
 			side: 'left'
 		},
 		{
-			icon: Clock,
-			badge: CheckCircle,
-			title: 'Absensi & Kehadiran',
-			desc: 'Clock-in/out berbasis GPS dengan validasi radius kantor, rekap kehadiran real-time, serta fitur koreksi absensi yang transparan dan tercatat dalam audit log.',
+			icon: MapPin,
+			title: 'Absensi GPS + Selfie',
+			desc: 'Clock-in divalidasi oleh lokasi GPS dan foto selfie secara bersamaan untuk memastikan kehadiran yang akurat.',
 			side: 'left'
 		},
 		{
-			icon: CalendarDays,
-			badge: Star,
-			title: 'Pengajuan Cuti',
-			desc: 'Ajukan cuti tahunan, sakit, melahirkan, atau khusus secara digital. Alur persetujuan otomatis dengan notifikasi email di setiap tahap.',
+			icon: Bell,
+			title: 'Notifikasi Real-Time',
+			desc: 'Setiap pengajuan — cuti, overtime, resign — menghasilkan notifikasi email otomatis ke semua pihak terkait.',
 			side: 'left'
 		},
 		{
-			icon: FileSignature,
-			badge: Sparkles,
-			title: 'Dokumen & TTD Digital',
-			desc: 'Terbitkan, unggah, dan tandatangani dokumen kepegawaian secara digital. Tanda tangan berkekuatan hukum sesuai UU ITE dengan audit trail lengkap.',
+			icon: FileCheck,
+			title: 'TTD Digital Sah Hukum',
+			desc: 'Tanda tangan digital berkekuatan hukum sesuai UU ITE. Tersedia tiga metode: gambar, ketik, atau unggah.',
 			side: 'right'
 		},
 		{
-			icon: Timer,
-			badge: CheckCircle,
-			title: 'Manajemen Overtime',
-			desc: 'Pengajuan lembur oleh karyawan diproses Admin melalui alur persetujuan yang jelas. Lembur yang disetujui otomatis masuk rekap dan laporan kompensasi.',
+			icon: ShieldCheck,
+			title: 'Aman & Teraudit',
+			desc: 'Setiap perubahan data tercatat dalam audit log otomatis — siapa mengubah apa dan kapan tersimpan permanen.',
 			side: 'right'
 		},
 		{
-			icon: LogOut,
-			badge: Star,
-			title: 'Resign & Offboarding',
-			desc: 'Proses pengunduran diri yang tertib — dari pengajuan, notice period 30 hari, hingga checklist offboarding serah terima aset dan penonaktifan akun otomatis.',
+			icon: Layers,
+			title: 'Alur Persetujuan Terstruktur',
+			desc: 'Pengajuan karyawan melewati alur approval yang jelas sesuai hierarki — tidak ada yang diproses di luar sistem.',
 			side: 'right'
-		}
+		},
 	];
 
 	let sectionEl: HTMLElement;
@@ -141,7 +115,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
 			<!-- Left column -->
 			<div class="space-y-8 md:space-y-14">
-				{#each services.filter((s) => s.side === 'left') as service, i}
+				{#each highlights.filter((h) => h.side === 'left') as item, i}
 					<div
 						class="flex flex-col group service-item"
 						class:in-view={isVisible}
@@ -152,24 +126,15 @@
 								class="relative text-[#f97316] bg-[#f97316]/10 p-3 rounded-xl transition-all duration-300
 								group-hover:bg-[#f97316]/20 group-hover:scale-110"
 							>
-								<svelte:component this={service.icon} size={22} />
-								<span class="absolute -top-1 -right-1 text-[#0d9488]">
-									<svelte:component this={service.badge} size={14} />
-								</span>
+								<item.icon size={22} />
 							</div>
 							<h3
 								class="text-lg font-semibold text-gray-800 group-hover:text-[#f97316] transition-colors duration-300"
 							>
-								{service.title}
+								{item.title}
 							</h3>
 						</div>
-						<p class="text-sm text-gray-500 leading-relaxed pl-14">{service.desc}</p>
-						<div
-							class="mt-3 pl-14 flex items-center text-[#f97316] text-xs font-semibold
-							opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-1"
-						>
-							Pelajari lebih lanjut <ArrowRight size={12} />
-						</div>
+						<p class="text-sm text-gray-500 leading-relaxed pl-14">{item.desc}</p>
 					</div>
 				{/each}
 			</div>
@@ -202,7 +167,7 @@
 								class="inline-flex items-center gap-2 bg-white text-gray-900 px-4 py-2 rounded-full
 								text-sm font-semibold hover:bg-[#f97316] hover:text-white transition-all w-fit mt-1"
 							>
-								Lihat Semua Modul <ArrowRight size={14} />
+								Lihat Matriks Akses <ArrowRight size={14} />
 							</a>
 						</div>
 					</div>
@@ -220,7 +185,7 @@
 
 			<!-- Right column -->
 			<div class="space-y-8 md:space-y-14">
-				{#each services.filter((s) => s.side === 'right') as service, i}
+				{#each highlights.filter((h) => h.side === 'right') as item, i}
 					<div
 						class="flex flex-col group service-item"
 						class:in-view={isVisible}
@@ -231,24 +196,15 @@
 								class="relative text-[#0d9488] bg-[#0d9488]/10 p-3 rounded-xl transition-all duration-300
 								group-hover:bg-[#0d9488]/20 group-hover:scale-110"
 							>
-								<svelte:component this={service.icon} size={22} />
-								<span class="absolute -top-1 -right-1 text-[#f97316]">
-									<svelte:component this={service.badge} size={14} />
-								</span>
+								<item.icon size={22} />
 							</div>
 							<h3
 								class="text-lg font-semibold text-gray-800 group-hover:text-[#0d9488] transition-colors duration-300"
 							>
-								{service.title}
+								{item.title}
 							</h3>
 						</div>
-						<p class="text-sm text-gray-500 leading-relaxed pl-14">{service.desc}</p>
-						<div
-							class="mt-3 pl-14 flex items-center text-[#0d9488] text-xs font-semibold
-							opacity-0 group-hover:opacity-100 transition-opacity duration-300 gap-1"
-						>
-							Pelajari lebih lanjut <ArrowRight size={12} />
-						</div>
+						<p class="text-sm text-gray-500 leading-relaxed pl-14">{item.desc}</p>
 					</div>
 				{/each}
 			</div>
@@ -304,7 +260,6 @@
 	}
 	.accent-line.expanded { width: 96px; }
 
-	.stagger-parent .stagger-1,
 	.stagger-parent .stagger-2,
 	.stagger-parent .stagger-3,
 	.stagger-parent .stagger-4 {
@@ -312,7 +267,6 @@
 		transform: translateY(16px);
 		transition: opacity 0.6s ease, transform 0.6s ease;
 	}
-	.stagger-parent.in-view .stagger-1 { opacity: 1; transform: none; transition-delay: 0.1s; }
 	.stagger-parent.in-view .stagger-2 { opacity: 1; transform: none; transition-delay: 0.25s; }
 	.stagger-parent.in-view .stagger-3 { opacity: 1; transform: none; transition-delay: 0.45s; }
 	.stagger-parent.in-view .stagger-4 { opacity: 1; transform: none; transition-delay: 0.3s; }

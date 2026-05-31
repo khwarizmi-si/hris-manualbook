@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Users, Clock, FileText, ClipboardList, TrendingUp, ChevronDown, ChevronRight } from 'lucide-svelte';
+	import { Users, Clock, FileText, ClipboardList, TrendingUp, ChevronDown, ChevronRight, Image, PlayCircle, ArrowLeftRight, Timer } from 'lucide-svelte';
 
+	// screenshot: taruh file di static/screenshots/, referensikan tanpa "static/"
+	// videoId: ID video YouTube (bagian setelah ?v= atau youtu.be/)
 	const guides = [
 		{
 			id: '3.1', icon: Users, title: 'Kelola Karyawan',
+			screenshot: '/screenshots/admin/admin-karyawan.png',
+			videoId: '',
 			items: [
 				{ sub: 'Tambah Karyawan Baru', steps: [
 					'Buka Karyawan › Daftar Karyawan, klik Tambah Karyawan',
@@ -21,15 +25,52 @@
 			]
 		},
 		{
-			id: '3.2', icon: Clock, title: 'Monitoring Kehadiran',
-			items: [{ sub: 'Rekap, Koreksi & Overtime', steps: [
-				'Rekap: Buka Kehadiran › Rekap Kehadiran, filter departemen/periode, ekspor Excel',
-				'Koreksi: Buka Kehadiran › Koreksi Absensi, cari karyawan, pilih tanggal, isi alasan koreksi',
-				'Overtime: Buka Kehadiran › Pengajuan Overtime, klik Setujui atau Tolak dengan catatan'
+			id: '3.2', icon: ArrowLeftRight, title: 'Transfer Karyawan',
+			screenshot: '/screenshots/admin/admin-transfer.png',
+			videoId: '',
+			items: [{ sub: 'Kelola Data Transfer', steps: [
+				'Buka Karyawan › Transfer, klik Buat Transfer Baru',
+				'Cari dan pilih karyawan yang akan ditransfer',
+				'Isi detail transfer: departemen/jabatan tujuan, tanggal efektif, keterangan',
+				'Klik Simpan — data transfer tersimpan dengan status Diproses',
+				'Pantau status transfer di daftar: cari by nama/NIP, lihat detail, atau hapus jika perlu'
 			]}]
 		},
 		{
-			id: '3.3', icon: FileText, title: 'Manajemen Dokumen',
+			id: '3.3', icon: Clock, title: 'Monitoring Kehadiran',
+			screenshot: '/screenshots/admin/admin-kehadiran.png',
+			videoId: '',
+			items: [
+				{ sub: 'Rekap & Filter Kehadiran', steps: [
+					'Buka Kehadiran › Semua Kehadiran',
+					'Filter data per hari, minggu, bulan, atau tahun sesuai kebutuhan',
+					'Gunakan fitur pencarian untuk menemukan data karyawan tertentu',
+					'Lihat detail sesi kehadiran (jam masuk, jam keluar, lokasi GPS)',
+					'Ekspor rekap ke Excel untuk keperluan penggajian atau audit'
+				]},
+				{ sub: 'Statistik & Koreksi Kehadiran', steps: [
+					'Statistik: Buka Kehadiran › Statistik — lihat grafik kehadiran per minggu/bulan/kuartal/tahun',
+					'Grafik menampilkan persentase On-time, Terlambat, dan Tidak Hadir per departemen',
+					'Koreksi: Buka Kehadiran › Pengajuan Koreksi, cari pengajuan karyawan, klik Setujui atau Tolak'
+				]}
+			]
+		},
+		{
+			id: '3.4', icon: Timer, title: 'Approval Overtime',
+			screenshot: '/screenshots/admin/admin-overtime.png',
+			videoId: '',
+			items: [{ sub: 'Kelola Pengajuan Lembur', steps: [
+				'Buka Overtime › Daftar Pengajuan',
+				'Filter pengajuan berdasarkan status: Menunggu / Disetujui / Ditolak',
+				'Klik detail pengajuan untuk melihat tanggal, jam, dan keterangan lembur',
+				'Klik Setujui — data otomatis masuk rekap overtime karyawan',
+				'Klik Tolak dan isi catatan alasan penolakan yang akan diterima karyawan'
+			]}]
+		},
+		{
+			id: '3.5', icon: FileText, title: 'Manajemen Dokumen',
+			screenshot: '/screenshots/admin/admin-dokumen.png',
+			videoId: '',
 			items: [{ sub: 'Terbitkan, Pantau & Verifikasi Dokumen', steps: [
 				'Terbitkan: Buka Dokumen › Kelola Dokumen, klik Terbitkan Dokumen Baru, tentukan penerima',
 				'Pantau TTD: Buka Dokumen › Status Penandatanganan, filter status, kirim pengingat',
@@ -37,7 +78,9 @@
 			]}]
 		},
 		{
-			id: '3.4', icon: ClipboardList, title: 'Proses Resign & Offboarding',
+			id: '3.6', icon: ClipboardList, title: 'Proses Resign & Offboarding',
+			screenshot: '/screenshots/admin/admin-resign.png',
+			videoId: '',
 			items: [{ sub: 'Alur Proses Resign', steps: [
 				'Buka Resign › Daftar Pengajuan, klik nama karyawan untuk lihat detail',
 				'Klik Setujui atau Tolak dengan catatan',
@@ -46,7 +89,9 @@
 			]}]
 		},
 		{
-			id: '3.5', icon: TrendingUp, title: 'Laporan & Analitik',
+			id: '3.7', icon: TrendingUp, title: 'Laporan & Analitik',
+			screenshot: '/screenshots/admin/admin-laporan.png',
+			videoId: '',
 			items: [{ sub: 'Laporan yang Tersedia', steps: [
 				'Laporan Kehadiran Bulanan (per departemen / seluruh perusahaan)',
 				'Laporan Rekap Cuti & Saldo Cuti',
@@ -61,6 +106,7 @@
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
 	let openCard = $state<string | null>(null);
+	let imgErrors = $state<Record<string, boolean>>({});
 
 	function toggle(id: string) {
 		openCard = openCard === id ? null : id;
@@ -133,27 +179,87 @@
 
 					{#if openCard === guide.id}
 						<div class="px-6 pb-6 border-t border-orange-50">
-							<div class="ml-4 sm:ml-[60px] mt-5 space-y-5">
-								{#each guide.items as item}
-									<div>
-										<div class="flex items-center gap-2 mb-3">
-											<ChevronRight size={14} class="text-[#f97316]" />
-											<h4 class="text-sm font-bold text-gray-800">{item.sub}</h4>
+							<div class="ml-4 sm:ml-[60px] mt-5 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+
+								<!-- Kiri: langkah-langkah -->
+								<div class="space-y-5">
+									{#each guide.items as item}
+										<div>
+											<div class="flex items-center gap-2 mb-3">
+												<ChevronRight size={14} class="text-[#f97316]" />
+												<h4 class="text-sm font-bold text-gray-800">{item.sub}</h4>
+											</div>
+											<div class="border-l-2 border-[#f97316]/20 pl-5">
+												<ol class="space-y-3">
+													{#each item.steps as step, idx}
+														<li class="flex gap-3 items-start">
+															<span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#f97316] text-white text-xs font-bold flex items-center justify-center mt-0.5 shadow-sm">
+																{idx + 1}
+															</span>
+															<span class="text-gray-700 text-sm leading-relaxed">{step}</span>
+														</li>
+													{/each}
+												</ol>
+											</div>
 										</div>
-										<div class="border-l-2 border-[#f97316]/20 pl-5">
-											<ol class="space-y-3">
-												{#each item.steps as step, idx}
-													<li class="flex gap-3 items-start">
-														<span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#f97316] text-white text-xs font-bold flex items-center justify-center mt-0.5 shadow-sm">
-															{idx + 1}
-														</span>
-														<span class="text-gray-700 text-sm leading-relaxed">{step}</span>
-													</li>
-												{/each}
-											</ol>
-										</div>
+									{/each}
+								</div>
+
+								<!-- Kanan: screenshot + video -->
+								{#if guide.screenshot || guide.videoId}
+									<div class="space-y-3">
+										{#if guide.screenshot}
+											<div class="rounded-xl overflow-hidden border border-gray-200 shadow-md">
+												<!-- Browser bar mockup -->
+												<div class="bg-gray-100 border-b border-gray-200 px-3 py-2 flex items-center gap-2">
+													<div class="flex gap-1.5 flex-shrink-0">
+														<div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+														<div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+														<div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+													</div>
+													<div class="flex-1 bg-white rounded text-xs text-gray-400 px-2 py-0.5 text-center truncate">
+														hris.quranmemo.com
+													</div>
+												</div>
+												{#if !imgErrors[guide.id]}
+													<img
+														src={guide.screenshot}
+														alt="Screenshot {guide.title}"
+														class="w-full block"
+														onerror={() => { imgErrors[guide.id] = true; }}
+													/>
+												{:else}
+													<!-- Placeholder sebelum screenshot asli ditambahkan -->
+													<div class="bg-gradient-to-br from-orange-50 to-white flex flex-col items-center justify-center gap-2 py-10 text-gray-400">
+														<Image size={28} />
+														<p class="text-xs">Screenshot belum tersedia</p>
+														<p class="text-[10px] text-gray-300">{guide.screenshot}</p>
+													</div>
+												{/if}
+											</div>
+										{/if}
+
+										{#if guide.videoId}
+											<div class="rounded-xl overflow-hidden border border-gray-200 shadow-md">
+												<div class="bg-gray-100 border-b border-gray-200 px-3 py-2 flex items-center gap-2">
+													<PlayCircle size={14} class="text-[#f97316] flex-shrink-0" />
+													<span class="text-xs font-medium text-gray-600">Video Tutorial</span>
+												</div>
+												<div class="aspect-video">
+													<iframe
+														src="https://www.youtube-nocookie.com/embed/{guide.videoId}"
+														title="Tutorial {guide.title}"
+														class="w-full h-full"
+														allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+														allowfullscreen
+														loading="lazy"
+													></iframe>
+												</div>
+											</div>
+										{/if}
 									</div>
-								{/each}
+								{/if}
+
 							</div>
 						</div>
 					{/if}

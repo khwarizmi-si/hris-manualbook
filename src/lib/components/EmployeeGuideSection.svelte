@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Lock, Pencil, MapPin, CalendarDays, FileSignature, LogOut, ChevronDown, AlertCircle } from 'lucide-svelte';
+	import { Lock, Pencil, MapPin, CalendarDays, FileSignature, LogOut, ChevronDown, AlertCircle, Image, PlayCircle, ClipboardCheck, Timer } from 'lucide-svelte';
 
+	// screenshot: taruh file di static/screenshots/, referensikan tanpa "static/"
+	// videoId: ID video YouTube (bagian setelah ?v= atau youtu.be/)
 	const guides = [
 		{
 			id: '2.1', icon: Lock, title: 'Login ke Sistem',
+			screenshot: '/screenshots/login.png',
+			videoId: '',
 			steps: [
 				'Buka browser dan akses https://hris.quranmemo.com',
 				'Masukkan Email/Username yang telah didaftarkan Admin HR',
@@ -12,10 +16,12 @@
 				'Masukkan nomor rekening aktif',
 				'Klik tombol Masuk — sistem mengarahkan ke Dashboard'
 			],
-			tip: 'Saat login pertama kali, Anda diminta mengganti password. Gunakan kombinasi huruf besar, huruf kecil, angka, dan simbol (min. 8 karakter).'
+			tip: null
 		},
 		{
 			id: '2.2', icon: Pencil, title: 'Memperbarui Profil',
+			screenshot: '/screenshots/user/profile.png',
+			videoId: '',
 			steps: [
 				'Klik ikon foto profil di pojok kanan atas',
 				'Pilih menu Profil Saya',
@@ -27,15 +33,50 @@
 		},
 		{
 			id: '2.3', icon: MapPin, title: 'Absensi & Kehadiran',
+			screenshot: '/screenshots/user/absensi.png',
+			videoId: '',
 			steps: [
-				'Clock-In: Buka menu Kehadiran › Clock-In, aktifkan GPS, klik Clock-In Sekarang',
+				'Clock-In: Buka menu Kehadiran › Clock-In, aktifkan GPS, ambil selfie, klik Clock-In Sekarang',
 				'Clock-Out: Buka menu Kehadiran › Clock-Out, periksa rekap jam kerja, klik Konfirmasi',
-				'Riwayat: Buka Kehadiran › Riwayat Kehadiran, pilih periode, unduh Excel/PDF'
+				'Riwayat: Buka Kehadiran › Riwayat Kehadiran, pilih periode — lihat status On-time / Terlambat',
+				'Ekspor riwayat kehadiran ke Excel atau PDF dari halaman Riwayat'
 			],
-			tip: 'Clock-in hanya dapat dilakukan dalam radius 100 meter dari lokasi kantor yang telah ditentukan Admin.'
+			tip: 'Clock-in hanya dapat dilakukan dalam radius 100 meter dari lokasi kantor. GPS dan kamera harus aktif saat clock-in.'
 		},
 		{
-			id: '2.4', icon: CalendarDays, title: 'Pengajuan Cuti',
+			id: '2.4', icon: ClipboardCheck, title: 'Koreksi Absensi',
+			screenshot: '/screenshots/user/koreksi-absensi.png',
+			videoId: '',
+			steps: [
+				'Buka menu Kehadiran › Pengajuan Koreksi',
+				'Klik Buat Pengajuan Baru',
+				'Pilih tanggal absensi yang perlu dikoreksi',
+				'Isi jam masuk dan/atau jam keluar yang benar',
+				'Tuliskan alasan koreksi dengan jelas',
+				'Klik Kirim Pengajuan — status akan tampil Menunggu Persetujuan',
+				'Pantau status di menu Kehadiran › Riwayat Pengajuan'
+			],
+			tip: 'Kuota pengajuan koreksi terbatas per bulan. Pastikan alasan yang diisi valid dan dapat diverifikasi oleh Admin.'
+		},
+		{
+			id: '2.5', icon: Timer, title: 'Pengajuan Overtime',
+			screenshot: '/screenshots/user/overtime.png',
+			videoId: '',
+			steps: [
+				'Buka menu Overtime › Buat Pengajuan',
+				'Pilih Tanggal lembur',
+				'Isi Jam Mulai dan Jam Selesai lembur',
+				'Isi Durasi Istirahat (jika ada) — sistem otomatis menghitung Net Overtime Hours',
+				'Tuliskan keterangan pekerjaan yang dilembur',
+				'Klik Ajukan dan tunggu persetujuan atasan',
+				'Pantau daftar overtime di menu Overtime › Daftar Pengajuan'
+			],
+			tip: 'Sistem menghitung otomatis total jam lembur bersih (dikurangi waktu istirahat). Pengajuan yang disetujui masuk ke rekap kompensasi.'
+		},
+		{
+			id: '2.6', icon: CalendarDays, title: 'Pengajuan Cuti',
+			screenshot: '/screenshots/user/cuti.png',
+			videoId: '',
 			steps: [
 				'Buka menu Cuti › Ajukan Cuti',
 				'Pilih Jenis Cuti: Tahunan / Sakit / Melahirkan / Khusus',
@@ -47,16 +88,21 @@
 			tip: 'Cuti tahunan wajib diajukan minimal H-3 hari kerja. Cuti mendadak harus disertai alasan valid.'
 		},
 		{
-			id: '2.5', icon: FileSignature, title: 'Dokumen & Tanda Tangan Digital',
+			id: '2.7', icon: FileSignature, title: 'Dokumen & Tanda Tangan Digital',
+			screenshot: '/screenshots/user/dokumen.png',
+			videoId: '',
 			steps: [
 				'Lihat dokumen: Buka Dokumen › Dokumen Saya, pilih kategori, klik Unduh',
-				'Unggah dokumen: Buka Dokumen › Unggah Dokumen, pilih kategori & file (PDF/JPG/PNG maks. 5 MB)',
-				'TTD Digital: Buka Dokumen › Perlu Ditandatangani, pilih metode TTD, konfirmasi dengan PIN'
+				'Unggah dokumen: Buka Dokumen › Unggah Dokumen, pilih kategori & file (PDF maks. 10 MB)',
+				'TTD Digital: Buka Dokumen › Perlu Ditandatangani, pilih metode — Gambar / Ketik / Unggah tanda tangan',
+				'Posisikan kotak tanda tangan pada halaman PDF, konfirmasi dengan PIN'
 			],
 			tip: 'Tanda tangan digital memiliki kekuatan hukum setara TTD basah sesuai UU ITE.'
 		},
 		{
-			id: '2.6', icon: LogOut, title: 'Pengajuan Resign',
+			id: '2.8', icon: LogOut, title: 'Pengajuan Resign',
+			screenshot: '/screenshots/user/resign.png',
+			videoId: '',
 			steps: [
 				'Buka menu Resign › Ajukan Resign',
 				'Baca ketentuan pengunduran diri',
@@ -72,6 +118,7 @@
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
 	let openCard = $state<string | null>(null);
+	let imgErrors = $state<Record<string, boolean>>({});
 
 	function toggle(id: string) {
 		openCard = openCard === id ? null : id;
@@ -146,24 +193,83 @@
 
 					{#if openCard === guide.id}
 						<div class="px-6 pb-6 border-t border-teal-50">
-							<!-- Left accent bar -->
-							<div class="ml-4 sm:ml-[60px] mt-5 border-l-2 border-[#0d9488]/20 pl-4 sm:pl-5">
-								<ol class="space-y-3">
-									{#each guide.steps as step, idx}
-										<li class="flex gap-3 items-start">
-											<span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#0d9488] text-white text-xs font-bold flex items-center justify-center mt-0.5 shadow-sm">
-												{idx + 1}
-											</span>
-											<span class="text-gray-700 text-sm leading-relaxed">{step}</span>
-										</li>
-									{/each}
-								</ol>
-								{#if guide.tip}
-									<div class="mt-5 flex gap-3 bg-amber-50 border border-amber-200/60 rounded-xl p-4">
-										<AlertCircle size={17} class="text-amber-500 flex-shrink-0 mt-0.5" />
-										<p class="text-amber-800 text-sm leading-relaxed">{guide.tip}</p>
+							<div class="ml-4 sm:ml-[60px] mt-5 grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+
+								<!-- Kiri: langkah-langkah -->
+								<div class="border-l-2 border-[#0d9488]/20 pl-4 sm:pl-5">
+									<ol class="space-y-3">
+										{#each guide.steps as step, idx}
+											<li class="flex gap-3 items-start">
+												<span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#0d9488] text-white text-xs font-bold flex items-center justify-center mt-0.5 shadow-sm">
+													{idx + 1}
+												</span>
+												<span class="text-gray-700 text-sm leading-relaxed">{step}</span>
+											</li>
+										{/each}
+									</ol>
+									{#if guide.tip}
+										<div class="mt-5 flex gap-3 bg-amber-50 border border-amber-200/60 rounded-xl p-4">
+											<AlertCircle size={17} class="text-amber-500 flex-shrink-0 mt-0.5" />
+											<p class="text-amber-800 text-sm leading-relaxed">{guide.tip}</p>
+										</div>
+									{/if}
+								</div>
+
+								<!-- Kanan: screenshot + video -->
+								{#if guide.screenshot || guide.videoId}
+									<div class="space-y-3">
+										{#if guide.screenshot}
+											<div class="rounded-xl overflow-hidden border border-gray-200 shadow-md">
+												<!-- Browser bar mockup -->
+												<div class="bg-gray-100 border-b border-gray-200 px-3 py-2 flex items-center gap-2">
+													<div class="flex gap-1.5 flex-shrink-0">
+														<div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+														<div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+														<div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+													</div>
+													<div class="flex-1 bg-white rounded text-xs text-gray-400 px-2 py-0.5 text-center truncate">
+														hris.quranmemo.com
+													</div>
+												</div>
+												{#if !imgErrors[guide.id]}
+													<img
+														src={guide.screenshot}
+														alt="Screenshot {guide.title}"
+														class="w-full block"
+														onerror={() => { imgErrors[guide.id] = true; }}
+													/>
+												{:else}
+													<!-- Placeholder sebelum screenshot asli ditambahkan -->
+													<div class="bg-gradient-to-br from-teal-50 to-white flex flex-col items-center justify-center gap-2 py-10 text-gray-400">
+														<Image size={28} />
+														<p class="text-xs">Screenshot belum tersedia</p>
+														<p class="text-[10px] text-gray-300">{guide.screenshot}</p>
+													</div>
+												{/if}
+											</div>
+										{/if}
+
+										{#if guide.videoId}
+											<div class="rounded-xl overflow-hidden border border-gray-200 shadow-md">
+												<div class="bg-gray-100 border-b border-gray-200 px-3 py-2 flex items-center gap-2">
+													<PlayCircle size={14} class="text-[#0d9488] flex-shrink-0" />
+													<span class="text-xs font-medium text-gray-600">Video Tutorial</span>
+												</div>
+												<div class="aspect-video">
+													<iframe
+														src="https://www.youtube-nocookie.com/embed/{guide.videoId}"
+														title="Tutorial {guide.title}"
+														class="w-full h-full"
+														allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+														allowfullscreen
+														loading="lazy"
+													></iframe>
+												</div>
+											</div>
+										{/if}
 									</div>
 								{/if}
+
 							</div>
 						</div>
 					{/if}
