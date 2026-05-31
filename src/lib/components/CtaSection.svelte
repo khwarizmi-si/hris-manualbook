@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ExternalLink, BookOpen, ArrowRight } from 'lucide-svelte';
+	import { MessageCircle, BookOpen, ArrowRight } from 'lucide-svelte';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
+	let tr = $derived(t[$lang].cta);
 
 	onMount(() => {
 		const obs = new IntersectionObserver(([e]) => { isVisible = e.isIntersecting; }, { threshold: 0.2 });
@@ -34,27 +37,27 @@
 		>
 			<!-- Badge -->
 			<div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-bold px-4 py-2 rounded-full mb-6 uppercase tracking-widest">
-				Mulai Sekarang
+				{tr.badge}
 			</div>
 
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
-				Siap Menggunakan <span class="text-[#fbbf24]">HRIS</span>?
+				{tr.heading_plain}<span class="text-[#fbbf24]">{tr.heading_accent}</span>{tr.heading_end}
 			</h2>
 			<p class="text-lg text-teal-100/80 mb-10 max-w-2xl mx-auto leading-relaxed">
-				Akses sistem HRIS sekarang dan kelola seluruh aktivitas SDM perusahaan Anda secara digital, efisien, dan transparan.
+				{tr.desc}
 			</p>
 
 			<div class="flex flex-col sm:flex-row gap-4 justify-center">
 				<a
-					href="https://hris.quranmemo.com"
+					href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#f97316] hover:bg-[#ea6c0a]
 					text-white font-bold rounded-xl transition-all shadow-xl shadow-orange-900/30
 					hover:shadow-2xl hover:-translate-y-0.5 text-base"
 				>
-					Buka HRIS Sekarang
-					<ExternalLink size={18} />
+					{tr.btn_demo}
+					<MessageCircle size={18} />
 				</a>
 				<a
 					href="#panduan-karyawan"
@@ -63,7 +66,7 @@
 					rounded-xl transition-all backdrop-blur-sm text-base"
 				>
 					<BookOpen size={18} />
-					Baca Panduan
+					{tr.btn_guide}
 					<ArrowRight size={16} />
 				</a>
 			</div>

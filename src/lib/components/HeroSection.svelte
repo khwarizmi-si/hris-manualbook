@@ -3,8 +3,12 @@
 	import { onMount } from 'svelte';
 	import { Globe, Phone, MapPin } from 'lucide-svelte';
 	import logo from '$lib/assets/logo-khwarizmi.png';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
 	let mounted = $state(false);
+	let tr = $derived(t[$lang].hero);
+
 	onMount(() => { mounted = true; });
 </script>
 
@@ -34,7 +38,7 @@
 				<!-- Slogan -->
 				<div in:fly={{ y: 20, duration: 500, delay: 250 }} class="mb-5">
 					<span class="text-xs font-bold tracking-[0.2em] text-[#0d9488] uppercase">
-						Panduan Sistem SDM Digital
+						{tr.slogan}
 					</span>
 				</div>
 
@@ -62,8 +66,7 @@
 					in:fly={{ y: 20, duration: 500, delay: 450 }}
 					class="mb-8 max-w-md text-base text-gray-500 leading-relaxed"
 				>
-					Panduan lengkap penggunaan <strong class="text-gray-800">Human Resource Information System</strong>
-					— sistem SDM berbasis web yang terintegrasi untuk karyawan dan Admin HR.
+					{tr.subtitle.split(tr.subtitle_strong)[0]}<strong class="text-gray-800">{tr.subtitle_strong}</strong>{tr.subtitle.split(tr.subtitle_strong)[1]}
 				</p>
 
 				<!-- CTA -->
@@ -72,7 +75,7 @@
 					href="#panduan-karyawan"
 					class="inline-block text-sm font-bold tracking-[0.2em] text-[#f97316] transition-colors hover:text-[#ea6c0a] uppercase"
 				>
-					Baca Panduan →
+					{tr.cta}
 				</a>
 			</div>
 
@@ -81,11 +84,11 @@
 				<div class="grid grid-cols-1 gap-4 text-xs text-gray-500 sm:grid-cols-3">
 					<div class="flex items-center gap-2">
 						<Globe size={14} class="text-[#0d9488] flex-shrink-0" />
-						<span>hris.quranmemo.com</span>
+						<span>khwarizmi.co.id</span>
 					</div>
 					<div class="flex items-center gap-2">
 						<Phone size={14} class="text-[#0d9488] flex-shrink-0" />
-						<span>+62 xxx xxxx xxxx</span>
+						<span>+62 812-8225-1136</span>
 					</div>
 					<div class="flex items-center gap-2">
 						<MapPin size={14} class="text-[#0d9488] flex-shrink-0" />

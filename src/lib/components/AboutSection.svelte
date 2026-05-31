@@ -1,45 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { ArrowRight, Globe, ShieldCheck, Bell, MapPin, Layers, FileCheck } from 'lucide-svelte';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
-	const highlights = [
-		{
-			icon: Globe,
-			title: 'Akses dari Mana Saja',
-			desc: 'Berbasis web — cukup buka browser, tidak perlu install aplikasi. Tersedia di desktop maupun ponsel.',
-			side: 'left'
-		},
-		{
-			icon: MapPin,
-			title: 'Absensi GPS + Selfie',
-			desc: 'Clock-in divalidasi oleh lokasi GPS dan foto selfie secara bersamaan untuk memastikan kehadiran yang akurat.',
-			side: 'left'
-		},
-		{
-			icon: Bell,
-			title: 'Notifikasi Real-Time',
-			desc: 'Setiap pengajuan — cuti, overtime, resign — menghasilkan notifikasi email otomatis ke semua pihak terkait.',
-			side: 'left'
-		},
-		{
-			icon: FileCheck,
-			title: 'TTD Digital Sah Hukum',
-			desc: 'Tanda tangan digital berkekuatan hukum sesuai UU ITE. Tersedia tiga metode: gambar, ketik, atau unggah.',
-			side: 'right'
-		},
-		{
-			icon: ShieldCheck,
-			title: 'Aman & Teraudit',
-			desc: 'Setiap perubahan data tercatat dalam audit log otomatis — siapa mengubah apa dan kapan tersimpan permanen.',
-			side: 'right'
-		},
-		{
-			icon: Layers,
-			title: 'Alur Persetujuan Terstruktur',
-			desc: 'Pengajuan karyawan melewati alur approval yang jelas sesuai hierarki — tidak ada yang diproses di luar sistem.',
-			side: 'right'
-		},
-	];
+	const highlightIcons = [Globe, MapPin, Bell, FileCheck, ShieldCheck, Layers];
+	const sides = ['left', 'left', 'left', 'right', 'right', 'right'];
+
+	let tr = $derived(t[$lang].about);
+	let highlights = $derived(
+		tr.highlights.map((h, i) => ({ ...h, icon: highlightIcons[i], side: sides[i] }))
+	);
 
 	let sectionEl: HTMLElement;
 
@@ -96,7 +67,7 @@
 		<!-- Heading -->
 		<div class="flex flex-col items-center mb-6 stagger-parent" class:in-view={isVisible}>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-light mb-4 text-center text-gray-900 stagger-2">
-				Apa itu <span class="font-bold text-[#0d9488]">HRIS</span>?
+				{tr.heading_plain}<span class="font-bold text-[#0d9488]">{tr.heading_accent}</span>{tr.heading_end}
 			</h2>
 			<div class="accent-line stagger-3" class:expanded={isVisible}></div>
 		</div>
@@ -105,10 +76,7 @@
 			class="text-center max-w-2xl mx-auto mb-20 text-gray-500 leading-relaxed stagger-parent stagger-4"
 			class:in-view={isVisible}
 		>
-			<strong class="text-gray-800">Human Resource Information System (HRIS)</strong> adalah sistem informasi
-			berbasis web yang digunakan untuk mengelola seluruh aktivitas SDM perusahaan secara
-			<span class="text-[#0d9488] font-semibold">digital dan terintegrasi</span> — dapat diakses kapan saja dan
-			di mana saja oleh karyawan maupun Admin HR.
+			<strong class="text-gray-800">Human Resource Information System (HRIS)</strong>{tr.desc_plain}<span class="text-[#0d9488] font-semibold">{tr.desc_accent}</span>{tr.desc_end}
 		</p>
 
 		<!-- Three-column grid -->
@@ -160,14 +128,14 @@
 							style="background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(13,148,136,0.75) 100%);"
 						></div>
 						<div class="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-2">
-							<p class="text-white/80 text-xs font-medium uppercase tracking-widest">Al-Khwarizmi</p>
-							<h3 class="text-white font-bold text-lg leading-snug">Sistem SDM Digital Terintegrasi</h3>
+							<p class="text-white/80 text-xs font-medium uppercase tracking-widest">{tr.center_tag}</p>
+							<h3 class="text-white font-bold text-lg leading-snug">{tr.center_title}</h3>
 							<a
 								href="#modul"
 								class="inline-flex items-center gap-2 bg-white text-gray-900 px-4 py-2 rounded-full
 								text-sm font-semibold hover:bg-[#f97316] hover:text-white transition-all w-fit mt-1"
 							>
-								Lihat Matriks Akses <ArrowRight size={14} />
+								{tr.center_cta} <ArrowRight size={14} />
 							</a>
 						</div>
 					</div>
@@ -217,18 +185,18 @@
 			style="background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);"
 		>
 			<div>
-				<h3 class="text-2xl font-bold text-white mb-1">Siap menggunakan HRIS?</h3>
-				<p class="text-teal-100 text-sm">Kelola SDM perusahaan Anda lebih efisien, transparan, dan digital.</p>
+				<h3 class="text-2xl font-bold text-white mb-1">{tr.cta_heading}</h3>
+				<p class="text-teal-100 text-sm">{tr.cta_sub}</p>
 			</div>
 			<a
-				href="https://hris.quranmemo.com"
+				href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="inline-flex items-center gap-2 bg-[#f97316] hover:bg-[#ea6c0a] text-white
 				px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 shadow-lg shadow-orange-900/20
 				whitespace-nowrap"
 			>
-				Buka HRIS Sekarang <ArrowRight size={16} />
+				{tr.cta_btn} <ArrowRight size={16} />
 			</a>
 		</div>
 	</div>

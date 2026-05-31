@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Building2, Timer, Bell, Layers, Repeat2, KeyRound } from 'lucide-svelte';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
-	const settings = [
-		{ icon: Building2, title: 'Informasi Perusahaan',   desc: 'Isi nama perusahaan, logo, alamat, nomor telepon, dan zona waktu (default: WIB).',                                                        color: 'teal' },
-		{ icon: Timer,     title: 'Konfigurasi Kehadiran',  desc: 'Atur radius clock-in (meter), toleransi keterlambatan (menit), fitur foto selfie, dan jam kerja default.',                                 color: 'orange' },
-		{ icon: Bell,      title: 'Konfigurasi Notifikasi', desc: 'Pilih jenis notifikasi via email/in-app: persetujuan cuti, overtime, dokumen, dan resign.',                                                color: 'teal' },
-		{ icon: Layers,    title: 'Manajemen Departemen',   desc: 'Tambah, edit, atau nonaktifkan departemen. Tentukan Kepala Departemen untuk setiap unit.',                                                  color: 'orange' },
-		{ icon: Repeat2,   title: 'Konfigurasi Shift',      desc: 'Buat shift kerja (pagi/malam/custom) dan assign ke karyawan/departemen via kalender drag-and-drop.',                                      color: 'teal' },
-		{ icon: KeyRound,  title: 'Role & Perizinan',       desc: 'Kelola hak akses 2 level (Admin HR & Karyawan) dan atur izin spesifik per fitur/departemen.',                                             color: 'orange' }
-	];
+	const settingIcons = [Building2, Timer, Bell, Layers, Repeat2, KeyRound];
+	const settingColors = ['teal', 'orange', 'teal', 'orange', 'teal', 'orange'];
+	const roleDots = ['orange', 'teal'];
 
-	const roles = [
-		{ role: 'Admin HR',   dot: 'orange', access: 'Akses penuh: kelola karyawan, kehadiran, dokumen, overtime, resign, dan semua fitur Setting', limit: 'Tidak dapat mengubah role milik Admin lain tanpa konfirmasi Super Admin' },
-		{ role: 'Karyawan',   dot: 'teal',   access: 'Akses terbatas: profil sendiri, kehadiran sendiri, cuti, overtime, dokumen, dan resign',       limit: 'Tidak dapat melihat data karyawan lain atau mengakses menu Setting' }
-	];
+	let tr = $derived(t[$lang].setting);
+	let settings = $derived(
+		tr.settings.map((s, i) => ({ ...s, icon: settingIcons[i], color: settingColors[i] }))
+	);
+	let roles = $derived(
+		tr.roles.map((r, i) => ({ ...r, dot: roleDots[i] }))
+	);
 
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
@@ -40,14 +40,14 @@
 		<!-- Heading -->
 		<div class="flex flex-col items-center text-center mb-16 section-header" class:in-view={isVisible}>
 			<div class="inline-flex items-center gap-2 bg-teal-50 text-[#0d9488] text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
-				BAB 4 — Khusus Admin
+				{tr.badge}
 			</div>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				Fitur <span class="text-[#0d9488]">Setting</span>
+				{tr.heading_plain}<span class="text-[#0d9488]">{tr.heading_accent}</span>
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
 			<p class="mt-6 text-lg text-gray-500 max-w-2xl leading-relaxed">
-				Menu Setting hanya dapat diakses Admin HR untuk mengonfigurasi sistem HRIS sesuai kebutuhan perusahaan.
+				{tr.desc}
 			</p>
 		</div>
 
@@ -83,14 +83,14 @@
 
 		<!-- Role table -->
 		<div class="role-table max-w-4xl mx-auto" class:in-view={isVisible}>
-			<h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Level Role & Hak Akses</h3>
+			<h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">{tr.role_heading}</h3>
 			<div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-md">
 				<table class="w-full text-sm min-w-[500px]">
 					<thead>
 						<tr style="background: linear-gradient(90deg, #0d9488, #0f766e);">
 							<th class="text-left px-6 py-4 font-semibold text-white">Role</th>
-							<th class="text-left px-6 py-4 font-semibold text-white">Hak Akses</th>
-							<th class="text-left px-6 py-4 font-semibold text-white">Batasan</th>
+							<th class="text-left px-6 py-4 font-semibold text-white">{tr.access_label}</th>
+							<th class="text-left px-6 py-4 font-semibold text-white">{tr.limit_label}</th>
 						</tr>
 					</thead>
 					<tbody>

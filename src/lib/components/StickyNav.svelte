@@ -1,19 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ExternalLink, Menu, X } from 'lucide-svelte';
+	import { MessageCircle, Menu, X } from 'lucide-svelte';
 	import logo from '$lib/assets/logo-khwarizmi.png';
-
-	const navLinks = [
-		{ href: '#tentang',          label: 'Tentang HRIS' },
-		{ href: '#modul',            label: 'Modul' },
-		{ href: '#panduan-karyawan', label: 'Panduan Karyawan' },
-		{ href: '#panduan-admin',    label: 'Panduan Admin' },
-		{ href: '#troubleshooting',  label: 'Troubleshooting' },
-		{ href: '#glosarium',        label: 'Glosarium' }
-	];
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
 	let scrolled = $state(false);
 	let mobileOpen = $state(false);
+
+	let tr = $derived(t[$lang]);
 
 	onMount(() => {
 		const onScroll = () => {
@@ -44,7 +39,7 @@
 
 			<!-- Desktop links -->
 			<div class="hidden lg:flex items-center gap-1">
-				{#each navLinks as link}
+				{#each tr.nav.links as link}
 					<a
 						href={link.href}
 						class="px-3 py-2 text-sm font-medium transition-colors rounded-lg
@@ -55,38 +50,68 @@
 						{link.label}
 					</a>
 				{/each}
+
+				<!-- Language toggle -->
+				<button
+					onclick={() => lang.update(l => l === 'id' ? 'en' : 'id')}
+					class="ml-2 flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-bold tracking-wider transition-all
+					{scrolled
+						? 'border-gray-200 text-gray-600 hover:border-[#0d9488] hover:text-[#0d9488] bg-white'
+						: 'border-white/40 text-gray-700 hover:border-[#0d9488] hover:text-[#0d9488] bg-white/20'}"
+					title="Switch language"
+				>
+					{#if $lang === 'id'}
+						<span>ID</span><span class="text-gray-300">|</span><span class="opacity-40">EN</span>
+					{:else}
+						<span class="opacity-40">ID</span><span class="text-gray-300">|</span><span>EN</span>
+					{/if}
+				</button>
+
 				<a
-					href="https://hris.quranmemo.com"
+					href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="ml-3 inline-flex items-center gap-1.5 px-4 py-2 bg-[#f97316] hover:bg-[#ea6c0a]
 					text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
 				>
-					Buka HRIS
-					<ExternalLink size={14} />
+					{tr.nav.demo}
+					<MessageCircle size={14} />
 				</a>
 			</div>
 
-			<!-- Mobile toggle -->
-			<button
-				onclick={() => (mobileOpen = !mobileOpen)}
-				class="lg:hidden p-2 rounded-lg transition-colors
-				{scrolled ? 'text-gray-500 hover:bg-gray-100' : 'text-gray-700 hover:bg-white/40'}"
-				aria-label="Toggle menu"
-			>
-				{#if mobileOpen}
-					<X size={22} />
-				{:else}
-					<Menu size={22} />
-				{/if}
-			</button>
+			<!-- Mobile right side -->
+			<div class="lg:hidden flex items-center gap-2">
+				<!-- Language toggle mobile -->
+				<button
+					onclick={() => lang.update(l => l === 'id' ? 'en' : 'id')}
+					class="flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs font-bold tracking-wider transition-all
+					{scrolled
+						? 'border-gray-200 text-gray-600 bg-white'
+						: 'border-gray-300 text-gray-700 bg-white/20'}"
+				>
+					{$lang === 'id' ? 'EN' : 'ID'}
+				</button>
+				<!-- Hamburger -->
+				<button
+					onclick={() => (mobileOpen = !mobileOpen)}
+					class="p-2 rounded-lg transition-colors
+					{scrolled ? 'text-gray-500 hover:bg-gray-100' : 'text-gray-700 hover:bg-white/40'}"
+					aria-label="Toggle menu"
+				>
+					{#if mobileOpen}
+						<X size={22} />
+					{:else}
+						<Menu size={22} />
+					{/if}
+				</button>
+			</div>
 		</div>
 	</div>
 
 	<!-- Mobile dropdown -->
 	{#if mobileOpen}
 		<div class="lg:hidden bg-white border-t border-gray-100 px-4 py-3 space-y-1 shadow-lg">
-			{#each navLinks as link}
+			{#each tr.nav.links as link}
 				<a
 					href={link.href}
 					onclick={() => (mobileOpen = false)}
@@ -96,12 +121,12 @@
 				</a>
 			{/each}
 			<a
-				href="https://hris.quranmemo.com"
+				href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="flex items-center justify-center gap-1.5 mt-2 px-4 py-2.5 bg-[#f97316] text-white text-sm font-semibold rounded-xl"
 			>
-				Buka HRIS <ExternalLink size={14} />
+				{tr.nav.demo} <MessageCircle size={14} />
 			</a>
 		</div>
 	{/if}

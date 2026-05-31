@@ -1,23 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { UserCheck, Bell, FileText, CheckCircle2, BarChart2, Briefcase, ClipboardList, FileCheck, Lock, MessageSquare } from 'lucide-svelte';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
-	const overtimeFlow = [
-		{ step: 1, actor: 'Karyawan', action: 'Ajukan lembur via menu Overtime',            status: 'Diajukan', color: 'teal',   icon: UserCheck },
-		{ step: 2, actor: 'Sistem',   action: 'Notifikasi masuk ke Admin HR',               status: 'Menunggu', color: 'orange', icon: Bell },
-		{ step: 3, actor: 'Admin HR', action: 'Review detail: tanggal, jam, alasan',         status: 'Review',  color: 'teal',   icon: FileText },
-		{ step: 4, actor: 'Admin HR', action: 'Klik Setujui atau Tolak dengan catatan',      status: 'Final',   color: 'orange', icon: CheckCircle2 },
-		{ step: 5, actor: 'Sistem',   action: 'Notifikasi & lembur tercatat di rekap',       status: 'Selesai', color: 'teal',   icon: BarChart2 }
-	];
+	const flowIcons = [UserCheck, Bell, FileText, CheckCircle2, BarChart2];
+	const flowColors = ['teal', 'orange', 'teal', 'orange', 'teal'];
+	const offboardIcons = [Briefcase, ClipboardList, FileCheck, FileText, Lock, MessageSquare];
 
-	const offboardingItems = [
-		{ no: 1, item: 'Serah terima pekerjaan & dokumentasi tugas',             pic: 'Karyawan & Atasan', icon: Briefcase },
-		{ no: 2, item: 'Pengembalian aset perusahaan (laptop, kartu akses, dsb.)',pic: 'GA / Admin',       icon: ClipboardList },
-		{ no: 3, item: 'Penyelesaian administrasi keuangan (reimbursement, dsb.)',pic: 'Keuangan',         icon: FileCheck },
-		{ no: 4, item: 'Penerbitan surat pengalaman kerja',                      pic: 'Admin HR',         icon: FileText },
-		{ no: 5, item: 'Penonaktifan akun sistem & akses aplikasi',              pic: 'IT / Admin HR',    icon: Lock },
-		{ no: 6, item: 'Exit interview',                                         pic: 'HR Manager',       icon: MessageSquare }
-	];
+	let tr = $derived(t[$lang].workflow);
+
+	let overtimeFlow = $derived(
+		tr.overtime_steps.map((s, i) => ({ ...s, icon: flowIcons[i], color: flowColors[i] }))
+	);
+	let offboardingItems = $derived(
+		tr.offboarding_items.map((c, i) => ({ ...c, icon: offboardIcons[i] }))
+	);
 
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
@@ -40,17 +38,17 @@
 
 	<div class="max-w-7xl mx-auto relative z-10">
 
-		<!-- ── Overtime flow ── -->
+		<!-- Overtime flow heading -->
 		<div class="flex flex-col items-center text-center mb-14 section-header" class:in-view={isVisible}>
 			<div class="inline-flex items-center gap-2 bg-teal-50 text-[#0d9488] text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
-				Alur Kerja
+				{tr.badge}
 			</div>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				Alur Pengajuan <span class="text-[#0d9488]">Overtime</span>
+				{tr.heading_plain}<span class="text-[#0d9488]">{tr.heading_accent}</span>
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
 			<p class="mt-6 text-lg text-gray-500 max-w-2xl leading-relaxed">
-				Proses persetujuan lembur yang transparan dan terotomasi dalam sistem.
+				{tr.desc}
 			</p>
 		</div>
 
@@ -120,12 +118,12 @@
 		<div class="flex items-center gap-4 mb-16 max-w-3xl mx-auto">
 			<div class="flex-1 h-px bg-gradient-to-r from-transparent to-gray-200"></div>
 			<div class="inline-flex items-center gap-2 bg-white border border-gray-200 text-[#0d9488] text-xs font-bold px-4 py-2 rounded-full shadow-sm uppercase tracking-wide">
-				Checklist Offboarding
+				{tr.offboarding_badge}
 			</div>
 			<div class="flex-1 h-px bg-gradient-to-l from-transparent to-gray-200"></div>
 		</div>
 
-		<p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">Proses pelepasan karyawan yang tertib dan terdokumentasi dalam sistem.</p>
+		<p class="text-center text-gray-500 mb-12 max-w-xl mx-auto">{tr.offboarding_desc}</p>
 
 		<!-- Offboarding checklist -->
 		<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">

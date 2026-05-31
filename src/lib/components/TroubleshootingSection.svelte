@@ -1,23 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Mail, MessageSquare, Ticket, AlertTriangle, CheckCircle2 } from 'lucide-svelte';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
-	const issues = [
-		{ issue: 'Tidak bisa login',              cause: 'Password salah / akun terkunci',        solution: 'Klik "Lupa Password" atau hubungi Admin HR' },
-		{ issue: 'Clock-in gagal',                cause: 'GPS tidak aktif / di luar area',        solution: 'Aktifkan GPS dan pastikan dalam radius kantor' },
-		{ issue: 'Dokumen tidak muncul',          cause: 'Belum diterbitkan Admin HR',            solution: 'Hubungi Admin HR untuk memverifikasi penerbitan dokumen' },
-		{ issue: 'Cuti tidak disetujui',          cause: 'Atasan belum approve / kuota habis',    solution: 'Hubungi atasan langsung atau cek sisa saldo cuti' },
-		{ issue: 'Resign tidak bisa diajukan',    cause: 'Notice period belum memenuhi syarat',   solution: 'Pastikan tanggal efektif minimal 30 hari dari hari ini' },
-		{ issue: 'Overtime tidak muncul di rekap',cause: 'Pengajuan belum disetujui Admin',       solution: 'Cek status di menu Overtime › Riwayat Pengajuan' },
-		{ issue: 'Menu Setting tidak bisa diakses',cause: 'Role akun bukan Admin HR',             solution: 'Hubungi Admin HR untuk pengubahan role akun' },
-		{ issue: 'Data tidak tersimpan',          cause: 'Sesi login kedaluwarsa',               solution: 'Refresh halaman dan login ulang' }
-	];
+	const contactIcons = [Mail, MessageSquare, Ticket];
+	const contactColors = ['teal', 'orange', 'teal'];
 
-	const contacts = [
-		{ icon: Mail,          label: 'Email Support',    value: 'Hubungi via Email',    color: 'teal' },
-		{ icon: MessageSquare, label: 'WhatsApp Support', value: 'Chat via WhatsApp',    color: 'orange' },
-		{ icon: Ticket,        label: 'Tiket Support',    value: 'Buat tiket baru',      color: 'teal' }
-	];
+	let tr = $derived(t[$lang].troubleshooting);
+	let contacts = $derived(
+		tr.contacts.map((c, i) => ({ ...c, icon: contactIcons[i], color: contactColors[i] }))
+	);
 
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
@@ -42,20 +35,20 @@
 		<!-- Heading -->
 		<div class="flex flex-col items-center text-center mb-16 section-header" class:in-view={isVisible}>
 			<div class="inline-flex items-center gap-2 bg-red-50 text-red-500 text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
-				BAB 5
+				{tr.badge}
 			</div>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				<span class="text-red-500">Trouble</span>shooting
+				<span class="text-red-500">{tr.heading_accent}</span>{tr.heading_plain}
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
 			<p class="mt-6 text-lg text-gray-500 max-w-2xl leading-relaxed">
-				Solusi cepat untuk masalah yang paling umum ditemui saat menggunakan HRIS.
+				{tr.desc}
 			</p>
 		</div>
 
 		<!-- Issue cards -->
 		<div class="grid sm:grid-cols-2 gap-4 max-w-5xl mx-auto mb-16">
-			{#each issues as row, i}
+			{#each tr.issues as row, i}
 				<div
 					class="issue-card group bg-white rounded-2xl border border-gray-100 p-5
 					hover:shadow-xl hover:-translate-y-1 hover:border-[#0d9488]/20 transition-all duration-300 overflow-hidden"
@@ -63,15 +56,13 @@
 					style="animation-delay: {i * 60}ms;"
 				>
 					<div class="flex items-start gap-4">
-						<!-- Problem icon -->
 						<div class="flex-shrink-0 w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center
 							group-hover:bg-red-100 transition-colors duration-300">
 							<AlertTriangle size={18} class="text-red-400" />
 						</div>
 						<div class="flex-1 min-w-0">
 							<h4 class="text-sm font-bold text-gray-900 mb-1">{row.issue}</h4>
-							<p class="text-xs text-gray-400 mb-3 leading-relaxed">Penyebab: {row.cause}</p>
-							<!-- Solution -->
+							<p class="text-xs text-gray-400 mb-3 leading-relaxed">{tr.col_cause}: {row.cause}</p>
 							<div class="flex items-start gap-2 bg-teal-50/70 rounded-xl px-3 py-2.5">
 								<CheckCircle2 size={14} class="text-[#0d9488] flex-shrink-0 mt-0.5" />
 								<p class="text-xs text-[#0d9488] font-semibold leading-relaxed">{row.solution}</p>
@@ -84,7 +75,7 @@
 
 		<!-- Contact section -->
 		<div class="contact-wrap max-w-3xl mx-auto" class:in-view={isVisible}>
-			<p class="text-center text-sm text-gray-400 font-medium mb-6 uppercase tracking-widest">Butuh bantuan lebih lanjut?</p>
+			<p class="text-center text-sm text-gray-400 font-medium mb-6 uppercase tracking-widest">{tr.contact_heading}</p>
 			<div class="grid sm:grid-cols-3 gap-5">
 				{#each contacts as contact, i}
 					<div

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Check, Minus } from 'lucide-svelte';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
-	// level: 'full' | 'submit' | 'approval' | 'manage' | 'none'
 	type Level = 'full' | 'submit' | 'approval' | 'manage' | 'none';
 
 	interface Feature {
@@ -13,33 +14,29 @@
 		admin: Level;
 	}
 
-	const features: Feature[] = [
-		{ name: 'Absensi (Clock In/Out)',   karyawan: 'full',     finance: 'full',     manager: 'full',     admin: 'full'   },
-		{ name: 'Koreksi Absensi',          karyawan: 'submit',   finance: 'submit',   manager: 'submit',   admin: 'manage' },
-		{ name: 'Pengajuan Cuti',           karyawan: 'submit',   finance: 'submit',   manager: 'submit',   admin: 'manage' },
-		{ name: 'Approval Cuti',            karyawan: 'none',     finance: 'approval', manager: 'approval', admin: 'manage' },
-		{ name: 'Pengajuan Overtime',       karyawan: 'submit',   finance: 'submit',   manager: 'none',     admin: 'manage' },
-		{ name: 'Approval Overtime',        karyawan: 'none',     finance: 'none',     manager: 'approval', admin: 'manage' },
-		{ name: 'Dokumen & TTD Digital',    karyawan: 'full',     finance: 'full',     manager: 'none',     admin: 'manage' },
-		{ name: 'Kelola Data Karyawan',     karyawan: 'none',     finance: 'full',     manager: 'none',     admin: 'manage' },
-		{ name: 'Transfer Karyawan',        karyawan: 'none',     finance: 'full',     manager: 'none',     admin: 'manage' },
-		{ name: 'Pengajuan Resign',         karyawan: 'submit',   finance: 'none',     manager: 'none',     admin: 'manage' },
-		{ name: 'Statistik & Laporan',      karyawan: 'none',     finance: 'none',     manager: 'none',     admin: 'full'   },
+	const featureLevels: Omit<Feature, 'name'>[] = [
+		{ karyawan: 'full',     finance: 'full',     manager: 'full',     admin: 'full'   },
+		{ karyawan: 'submit',   finance: 'submit',   manager: 'submit',   admin: 'manage' },
+		{ karyawan: 'submit',   finance: 'submit',   manager: 'submit',   admin: 'manage' },
+		{ karyawan: 'none',     finance: 'approval', manager: 'approval', admin: 'manage' },
+		{ karyawan: 'submit',   finance: 'submit',   manager: 'none',     admin: 'manage' },
+		{ karyawan: 'none',     finance: 'none',     manager: 'approval', admin: 'manage' },
+		{ karyawan: 'full',     finance: 'full',     manager: 'none',     admin: 'manage' },
+		{ karyawan: 'none',     finance: 'full',     manager: 'none',     admin: 'manage' },
+		{ karyawan: 'none',     finance: 'full',     manager: 'none',     admin: 'manage' },
+		{ karyawan: 'submit',   finance: 'none',     manager: 'none',     admin: 'manage' },
+		{ karyawan: 'none',     finance: 'none',     manager: 'none',     admin: 'full'   },
 	];
 
-	const roles = [
-		{ key: 'karyawan', label: 'Karyawan',  color: 'teal'   },
-		{ key: 'finance',  label: 'Finance',   color: 'blue'   },
-		{ key: 'manager',  label: 'Manager',   color: 'violet' },
-		{ key: 'admin',    label: 'Admin HR',  color: 'orange' },
-	] as const;
+	const roleKeys = ['karyawan', 'finance', 'manager', 'admin'] as const;
+	const roleColors = ['teal', 'blue', 'violet', 'orange'];
 
-	const badge: Record<Level, { label: string; cls: string }> = {
-		full:     { label: 'Akses',    cls: 'bg-teal-50 text-[#0d9488] border border-teal-200' },
-		submit:   { label: 'Ajukan',   cls: 'bg-blue-50 text-blue-600 border border-blue-200'  },
-		approval: { label: 'Approval', cls: 'bg-orange-50 text-[#f97316] border border-orange-200' },
-		manage:   { label: 'Kelola',   cls: 'bg-gray-900 text-white border border-gray-800'    },
-		none:     { label: '—',        cls: 'text-gray-300'                                    },
+	const badgeCls: Record<Level, string> = {
+		full:     'bg-teal-50 text-[#0d9488] border border-teal-200',
+		submit:   'bg-blue-50 text-blue-600 border border-blue-200',
+		approval: 'bg-orange-50 text-[#f97316] border border-orange-200',
+		manage:   'bg-gray-900 text-white border border-gray-800',
+		none:     'text-gray-300',
 	};
 
 	const roleHeaderCls: Record<string, string> = {
@@ -48,6 +45,24 @@
 		violet: 'bg-violet-50 text-violet-600',
 		orange: 'bg-orange-50 text-[#f97316]',
 	};
+
+	let tr = $derived(t[$lang].module);
+
+	let features = $derived<Feature[]>(
+		featureLevels.map((lvls, i) => ({ name: tr.feature_names[i], ...lvls }))
+	);
+
+	let badge = $derived<Record<Level, { label: string; cls: string }>>({
+		full:     { label: tr.badge_labels.full,     cls: badgeCls.full     },
+		submit:   { label: tr.badge_labels.submit,   cls: badgeCls.submit   },
+		approval: { label: tr.badge_labels.approval, cls: badgeCls.approval },
+		manage:   { label: tr.badge_labels.manage,   cls: badgeCls.manage   },
+		none:     { label: tr.badge_labels.none,     cls: badgeCls.none     },
+	});
+
+	let roles = $derived(
+		roleKeys.map((key, i) => ({ key, label: tr.role_labels[i], color: roleColors[i] }))
+	);
 
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
@@ -73,14 +88,14 @@
 		<!-- Heading -->
 		<div class="flex flex-col items-center text-center mb-12 section-header" class:in-view={isVisible}>
 			<div class="inline-flex items-center gap-2 bg-orange-50 text-[#f97316] text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
-				Hak Akses per Role
+				{tr.badge}
 			</div>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				Siapa Bisa <span class="text-[#0d9488]">Apa?</span>
+				{tr.heading_plain}<span class="text-[#0d9488]">{tr.heading_accent}</span>
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
 			<p class="mt-6 text-lg text-gray-500 max-w-2xl leading-relaxed">
-				Setiap role memiliki akses berbeda. Gunakan tabel ini sebagai referensi cepat sebelum membaca panduan lengkap.
+				{tr.desc}
 			</p>
 		</div>
 
@@ -94,18 +109,17 @@
 			{/each}
 			<span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full text-gray-400 bg-gray-50 border border-gray-200">
 				<Minus size={11} />
-				Tidak Ada Akses
+				{tr.no_access}
 			</span>
 		</div>
 
 		<!-- Matrix table -->
 		<div class="matrix-wrap overflow-x-auto rounded-2xl border border-gray-100 shadow-sm" class:in-view={isVisible}>
 			<table class="w-full min-w-[560px] text-sm border-collapse">
-				<!-- Role header -->
 				<thead>
 					<tr class="border-b border-gray-100">
 						<th class="text-left px-5 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider w-44 bg-gray-50">
-							Fitur
+							{$lang === 'id' ? 'Fitur' : 'Feature'}
 						</th>
 						{#each roles as role}
 							<th class="px-3 py-4 text-center bg-gray-50">
@@ -146,7 +160,9 @@
 
 		<!-- Footer note -->
 		<p class="text-center text-xs text-gray-400 mt-5 note" class:in-view={isVisible}>
-			<strong class="text-gray-500">Kelola</strong> = akses penuh termasuk melihat, menyetujui, mengedit, dan menghapus data milik semua pengguna.
+			<strong class="text-gray-500">{badge.manage.label}</strong> = {$lang === 'id'
+				? 'akses penuh termasuk melihat, menyetujui, mengedit, dan menghapus data milik semua pengguna.'
+				: 'full access including viewing, approving, editing, and deleting data from all users.'}
 		</p>
 	</div>
 </section>

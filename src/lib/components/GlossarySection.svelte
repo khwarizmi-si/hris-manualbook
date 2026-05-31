@@ -1,20 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { BookOpen, Clock, FileSignature, TrendingUp, ShieldCheck, LogOut, Bell, Timer, Repeat2, KeyRound, ClipboardList } from 'lucide-svelte';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
-	const glossary = [
-		{ term: 'HRIS',               def: 'Human Resource Information System — sistem informasi SDM berbasis digital',                                     icon: BookOpen,     color: 'teal' },
-		{ term: 'Clock-In / Out',     def: 'Pencatatan waktu masuk dan pulang kerja secara digital',                                                        icon: Clock,        color: 'orange' },
-		{ term: 'Tanda Tangan Digital',def: 'Tanda tangan elektronik berkekuatan hukum melalui sistem HRIS',                                               icon: FileSignature, color: 'teal' },
-		{ term: 'KPI',                def: 'Key Performance Indicator — indikator pengukur kinerja karyawan',                                              icon: TrendingUp,   color: 'orange' },
-		{ term: 'BPJS',               def: 'Badan Penyelenggara Jaminan Sosial — program jaminan sosial nasional',                                         icon: ShieldCheck,  color: 'teal' },
-		{ term: 'Offboarding',        def: 'Proses administrasi pelepasan karyawan yang mengundurkan diri atau berakhir kontraknya',                       icon: LogOut,       color: 'orange' },
-		{ term: 'Notice Period',      def: 'Masa pemberitahuan wajib sebelum tanggal efektif resign (minimal 30 hari)',                                    icon: Bell,         color: 'teal' },
-		{ term: 'Overtime',           def: 'Lembur — jam kerja di luar jadwal normal yang diajukan karyawan dan disetujui Admin HR',                       icon: Timer,        color: 'orange' },
-		{ term: 'Shift',              def: 'Jadwal kerja bergilir yang dikonfigurasi Admin dan di-assign ke karyawan tertentu',                            icon: Repeat2,      color: 'teal' },
-		{ term: 'Role',               def: 'Level hak akses pengguna dalam sistem HRIS (Admin HR atau Karyawan)',                                          icon: KeyRound,     color: 'orange' },
-		{ term: 'Audit Log',          def: 'Catatan otomatis sistem atas setiap perubahan data dan aksi pengguna di HRIS',                                 icon: ClipboardList, color: 'teal' }
-	];
+	const termIcons = [BookOpen, Clock, FileSignature, TrendingUp, ShieldCheck, LogOut, Bell, Timer, Repeat2, KeyRound, ClipboardList];
+	const termColors = ['teal', 'orange', 'teal', 'orange', 'teal', 'orange', 'teal', 'orange', 'teal', 'orange', 'teal'];
+
+	let tr = $derived(t[$lang].glossary);
+	let glossary = $derived(
+		tr.terms.map((t, i) => ({ ...t, icon: termIcons[i], color: termColors[i] }))
+	);
 
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
@@ -44,14 +40,14 @@
 		<!-- Heading -->
 		<div class="flex flex-col items-center text-center mb-16 section-header" class:in-view={isVisible}>
 			<div class="inline-flex items-center gap-2 bg-teal-50 text-[#0d9488] text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
-				Referensi
+				{tr.badge}
 			</div>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				<span class="text-[#0d9488]">Glosarium</span>
+				<span class="text-[#0d9488]">{tr.heading_accent}</span>
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
 			<p class="mt-6 text-lg text-gray-500 max-w-2xl leading-relaxed">
-				Daftar istilah penting yang digunakan dalam sistem HRIS Al-Khwarizmi.
+				{tr.desc}
 			</p>
 		</div>
 

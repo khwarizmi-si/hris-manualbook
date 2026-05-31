@@ -1,22 +1,10 @@
 <script lang="ts">
-	import { ArrowRight, ExternalLink } from 'lucide-svelte';
+	import { ArrowRight, ExternalLink, Phone } from 'lucide-svelte';
 	import logo from '$lib/assets/logo-khwarizmi.png';
+	import { lang } from '$lib/stores/lang';
+	import { t } from '$lib/i18n';
 
-	const guideLinks = [
-		{ href: '#panduan-karyawan', label: 'Panduan Karyawan' },
-		{ href: '#panduan-admin',    label: 'Panduan Admin HR' },
-		{ href: '#setting',          label: 'Fitur Setting' },
-		{ href: '#troubleshooting',  label: 'Troubleshooting' }
-	];
-
-	const moduleList = [
-		'Data Karyawan',
-		'Absensi & Kehadiran',
-		'Pengajuan Cuti',
-		'Dokumen & TTD Digital',
-		'Penilaian Kinerja',
-		'Pengajuan Resign'
-	];
+	let tr = $derived(t[$lang].footer);
 </script>
 
 <footer class="relative bg-gray-950 text-gray-400 pt-16 pb-8 overflow-hidden">
@@ -35,16 +23,16 @@
 					</div>
 				</div>
 				<p class="text-sm leading-relaxed text-gray-500 max-w-xs">
-					Sistem informasi SDM terintegrasi untuk perusahaan modern. Efisien, transparan, dan aman.
+					{tr.brand_desc}
 				</p>
 				<div class="mt-5 h-0.5 w-12 rounded-full bg-gradient-to-r from-[#0d9488] to-[#f97316]"></div>
 			</div>
 
-			<!-- Panduan links -->
+			<!-- Guide links -->
 			<div>
-				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">Panduan</h4>
+				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">{tr.guide_heading}</h4>
 				<ul class="space-y-3 text-sm">
-					{#each guideLinks as link}
+					{#each tr.guide_links as link}
 						<li>
 							<a
 								href={link.href}
@@ -58,11 +46,11 @@
 				</ul>
 			</div>
 
-			<!-- Modul list -->
+			<!-- Module list -->
 			<div>
-				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">Modul</h4>
+				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">{tr.module_heading}</h4>
 				<ul class="space-y-3 text-sm">
-					{#each moduleList as mod}
+					{#each tr.module_list as mod}
 						<li class="text-gray-600 text-sm">{mod}</li>
 					{/each}
 				</ul>
@@ -70,25 +58,34 @@
 
 			<!-- Info -->
 			<div>
-				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">Informasi</h4>
+				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">{tr.info_heading}</h4>
 				<ul class="space-y-3 text-sm text-gray-500">
 					<li class="flex items-center gap-2">
 						<span class="w-1.5 h-1.5 rounded-full bg-[#0d9488]"></span>
-						Versi Manual Book: 1.0
+						{tr.version}
 					</li>
 					<li class="flex items-center gap-2">
 						<span class="w-1.5 h-1.5 rounded-full bg-[#f97316]"></span>
-						Tahun: 2025
+						{tr.year}
 					</li>
 					<li class="pt-2">
 						<a
-							href="https://hris.quranmemo.com"
+							href="https://khwarizmi.co.id"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="inline-flex items-center gap-1.5 text-[#14b8a6] hover:text-[#f97316] transition-colors font-medium text-sm"
 						>
-							hris.quranmemo.com
+							khwarizmi.co.id
 							<ExternalLink size={12} />
+						</a>
+						<a
+							href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-1.5 text-gray-500 hover:text-[#f97316] transition-colors text-sm mt-1"
+						>
+							<Phone size={12} />
+							+62 812-8225-1136
 						</a>
 					</li>
 				</ul>
@@ -97,8 +94,8 @@
 
 		<!-- Bottom bar -->
 		<div class="border-t border-gray-800/60 pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
-			<p>© 2025 Al-Khwarizmi. Manual Book HRIS v1.0</p>
-			<p>Dibuat untuk kemudahan pengelolaan SDM yang lebih baik.</p>
+			<p>{tr.bottom1}</p>
+			<p>{tr.bottom2}</p>
 		</div>
 	</div>
 </footer>
