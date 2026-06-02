@@ -34,7 +34,7 @@
 	<div class="max-w-7xl mx-auto relative z-10">
 		<!-- Heading -->
 		<div class="flex flex-col items-center text-center mb-16 section-header" class:in-view={isVisible}>
-			<div class="inline-flex items-center gap-2 bg-red-50 text-red-500 text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
+			<div class="inline-flex items-center gap-2 bg-red-50 text-red-700 text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
 				{tr.badge}
 			</div>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -106,12 +106,14 @@
 
 <style>
 	.accent-line {
-		height: 3px; width: 0;
+		height: 3px; width: 80px;
 		background: linear-gradient(90deg, #ef4444, #f97316);
 		border-radius: 2px;
-		transition: width 0.9s ease 0.4s;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.9s ease 0.4s;
 	}
-	.accent-line.expanded { width: 80px; }
+	.accent-line.expanded { transform: scaleX(1); }
 
 	.section-header {
 		opacity: 0; transform: translateY(20px);

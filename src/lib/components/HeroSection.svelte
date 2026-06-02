@@ -46,7 +46,7 @@
 				<h1
 					in:fly={{ y: 20, duration: 600, delay: 300 }}
 					class="font-extrabold text-gray-900"
-					style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1.1;"
+					style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance;"
 				>
 					Manual Book<br />
 					<span class="text-[#f97316]">HRIS</span>
@@ -73,7 +73,7 @@
 				<a
 					in:fly={{ y: 20, duration: 500, delay: 520 }}
 					href="#panduan-karyawan"
-					class="inline-block text-sm font-bold tracking-[0.2em] text-[#f97316] transition-colors hover:text-[#ea6c0a] uppercase"
+					class="inline-block text-sm font-bold tracking-[0.2em] text-[#c2410c] transition-colors hover:text-[#9a3412] uppercase"
 				>
 					{tr.cta}
 				</a>
@@ -102,7 +102,7 @@
 	<!-- Right Side: Image with clip-path reveal animation -->
 	<div
 		class="hero-image w-full min-h-[45vw] bg-cover bg-center md:w-1/2 md:min-h-full lg:w-2/5"
-		style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=1200&fit=crop');"
+		style="background-image: url('/kantor-khwarizmi.webp');"
 		aria-hidden="true"
 	></div>
 </section>

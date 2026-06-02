@@ -64,7 +64,7 @@
 					<div class="flex items-start gap-4">
 						<div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110
 							{item.color === 'teal' ? 'bg-[#0d9488]/10' : 'bg-[#f97316]/10'}">
-							<item.icon size={18} class="{item.color === 'teal' ? 'text-[#0d9488]' : 'text-[#f97316]'}" />
+							<item.icon size={18} class={item.color === 'teal' ? 'text-[#0d9488]' : 'text-[#f97316]'} />
 						</div>
 						<div class="flex-1 min-w-0">
 							<div class="text-sm font-bold text-gray-900 mb-1 flex items-center gap-2">
@@ -88,12 +88,14 @@
 
 <style>
 	.accent-line {
-		height: 3px; width: 0;
+		height: 3px; width: 80px;
 		background: linear-gradient(90deg, #0d9488, #f97316);
 		border-radius: 2px;
-		transition: width 0.9s ease 0.4s;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.9s ease 0.4s;
 	}
-	.accent-line.expanded { width: 80px; }
+	.accent-line.expanded { transform: scaleX(1); }
 
 	.section-header {
 		opacity: 0; transform: translateY(20px);

@@ -169,12 +169,14 @@
 
 <style>
 	.accent-line {
-		height: 3px; width: 0;
+		height: 3px; width: 80px;
 		background: linear-gradient(90deg, #0d9488, #f97316);
 		border-radius: 2px;
-		transition: width 0.9s ease 0.4s;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.9s ease 0.4s;
 	}
-	.accent-line.expanded { width: 80px; }
+	.accent-line.expanded { transform: scaleX(1); }
 
 	.section-header {
 		opacity: 0; transform: translateY(20px);

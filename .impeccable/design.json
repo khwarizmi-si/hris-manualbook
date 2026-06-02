@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-02T00:00:00.000Z",
+  "title": "Design System: HRIS Al-Khwarizmi Manual Book",
+  "extensions": {
+    "colorMeta": {
+      "admin-amber":        { "role": "primary",   "displayName": "Amber Tegas",       "canonical": "#f97316", "tonalRamp": ["#431407","#7c2d12","#9a3412","#c2410c","#ea580c","#f97316","#fb923c","#fdba74","#fed7aa","#fff7ed"] },
+      "admin-amber-light":  { "role": "primary",   "displayName": "Amber Tegas Light", "canonical": "#fb923c", "tonalRamp": ["#431407","#7c2d12","#9a3412","#c2410c","#ea580c","#f97316","#fb923c","#fdba74","#fed7aa","#fff7ed"] },
+      "admin-amber-dark":   { "role": "primary",   "displayName": "Amber Tegas Dark",  "canonical": "#ea6c0a", "tonalRamp": ["#431407","#7c2d12","#9a3412","#c2410c","#ea580c","#f97316","#fb923c","#fdba74","#fed7aa","#fff7ed"] },
+      "employee-teal":      { "role": "secondary", "displayName": "Zamrud Tenang",     "canonical": "#0d9488", "tonalRamp": ["#042f2e","#134e4a","#115e59","#0f766e","#0d9488","#14b8a6","#2dd4bf","#5eead4","#99f6e4","#f0fdfa"] },
+      "employee-teal-light":{ "role": "secondary", "displayName": "Zamrud Tenang Light","canonical": "#14b8a6","tonalRamp": ["#042f2e","#134e4a","#115e59","#0f766e","#0d9488","#14b8a6","#2dd4bf","#5eead4","#99f6e4","#f0fdfa"] },
+      "employee-teal-dark": { "role": "secondary", "displayName": "Zamrud Tenang Dark","canonical": "#0f766e", "tonalRamp": ["#042f2e","#134e4a","#115e59","#0f766e","#0d9488","#14b8a6","#2dd4bf","#5eead4","#99f6e4","#f0fdfa"] },
+      "signal-amber":       { "role": "tertiary",  "displayName": "Amber Sinyal",      "canonical": "#fbbf24", "tonalRamp": ["#451a03","#78350f","#92400e","#b45309","#d97706","#f59e0b","#fbbf24","#fcd34d","#fde68a","#fffbeb"] },
+      "ink-primary":        { "role": "neutral",   "displayName": "Tinta Utama",       "canonical": "#111827", "tonalRamp": ["#030712","#111827","#1f2937","#374151","#4b5563","#6b7280","#9ca3af","#d1d5db","#f3f4f6","#f9fafb"] },
+      "ink-secondary":      { "role": "neutral",   "displayName": "Tinta Sekunder",    "canonical": "#6b7280", "tonalRamp": ["#030712","#111827","#1f2937","#374151","#4b5563","#6b7280","#9ca3af","#d1d5db","#f3f4f6","#f9fafb"] },
+      "ink-tertiary":       { "role": "neutral",   "displayName": "Tinta Tersier",     "canonical": "#9ca3af", "tonalRamp": ["#030712","#111827","#1f2937","#374151","#4b5563","#6b7280","#9ca3af","#d1d5db","#f3f4f6","#f9fafb"] },
+      "surface-white":      { "role": "neutral",   "displayName": "Permukaan Putih",   "canonical": "#ffffff", "tonalRamp": ["#030712","#111827","#374151","#6b7280","#9ca3af","#d1d5db","#e5e7eb","#f3f4f6","#f9fafb","#ffffff"] },
+      "surface-teal-wash":  { "role": "neutral",   "displayName": "Teal Wash",         "canonical": "#f0fdf9", "tonalRamp": ["#042f2e","#134e4a","#115e59","#0f766e","#0d9488","#14b8a6","#5eead4","#99f6e4","#ccfbf1","#f0fdfa"] },
+      "surface-orange-tint":{ "role": "neutral",   "displayName": "Orange Tint",       "canonical": "#fff7ed", "tonalRamp": ["#431407","#7c2d12","#c2410c","#ea580c","#f97316","#fb923c","#fdba74","#fed7aa","#ffedd5","#fff7ed"] },
+      "surface-teal-tint":  { "role": "neutral",   "displayName": "Teal Tint",         "canonical": "#f0fdfa", "tonalRamp": ["#042f2e","#134e4a","#0f766e","#0d9488","#14b8a6","#2dd4bf","#5eead4","#99f6e4","#ccfbf1","#f0fdfa"] },
+      "border-subtle":      { "role": "neutral",   "displayName": "Border Halus",      "canonical": "#f3f4f6", "tonalRamp": ["#111827","#1f2937","#374151","#4b5563","#9ca3af","#d1d5db","#e5e7eb","#f3f4f6","#f9fafb","#ffffff"] },
+      "border-medium":      { "role": "neutral",   "displayName": "Border Medium",     "canonical": "#e5e7eb", "tonalRamp": ["#111827","#1f2937","#374151","#4b5563","#9ca3af","#d1d5db","#e5e7eb","#f3f4f6","#f9fafb","#ffffff"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display",  "purpose": "Judul halaman utama di HeroSection. Satu per halaman." },
+      "headline": { "displayName": "Headline", "purpose": "Heading per seksi (h2). Selalu dengan text-wrap balance." },
+      "title":    { "displayName": "Title",    "purpose": "Sub-heading dalam komponen — judul video card, judul accordion." },
+      "body":     { "displayName": "Body",     "purpose": "Teks deskriptif. Max 65ch. Min #6b7280 di atas putih." },
+      "label":    { "displayName": "Label",    "purpose": "Badge, kicker bab, status tag. Maks 4 kata. Tidak untuk kalimat." }
+    },
+    "shadows": [
+      { "name": "ambient",      "value": "0 1px 2px rgba(0,0,0,0.05)",                                                                    "purpose": "Accordion item resting. Batas minimal dari background." },
+      { "name": "hover-lift",   "value": "0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.05)",                            "purpose": "Accordion item hover. Menunjukkan interaktivitas." },
+      { "name": "card-elevated","value": "0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.04)",                          "purpose": "Accordion terbuka, video card. Elemen aktif." },
+      { "name": "hero-elevated","value": "0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.04)",                        "purpose": "Video card utama. Digunakan sangat jarang." }
+    ],
+    "motion": [
+      { "name": "ease-standard",  "value": "cubic-bezier(0.4, 0, 0.2, 1)",              "purpose": "State transitions — hover, border color, shadow." },
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.25, 1, 0.5, 1)",             "purpose": "Entrance animations — fly, accordion reveal." },
+      { "name": "hero-reveal",    "value": "cubic-bezier(0.77, 0, 0.175, 1) 1.2s",     "purpose": "Clip-path reveal di HeroSection image." }
+    ],
+    "breakpoints": [
+      { "name": "sm",  "value": "640px" },
+      { "name": "md",  "value": "768px" },
+      { "name": "lg",  "value": "1024px" },
+      { "name": "xl",  "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA utama — WhatsApp demo, navigasi. Warna admin-amber.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Minta Demo <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 6px; background: #f97316; color: #ffffff; padding: 8px 16px; font-size: 14px; font-weight: 600; border-radius: 8px; border: none; text-decoration: none; cursor: pointer; transition: background 200ms ease; box-shadow: 0 1px 2px rgba(0,0,0,0.05); } .ds-btn-primary:hover { background: #ea6c0a; } .ds-btn-primary:focus-visible { outline: 2px solid #fbbf24; outline-offset: 2px; }"
+    },
+    {
+      "name": "Admin Badge",
+      "kind": "chip",
+      "refersTo": "badge-admin",
+      "description": "Label BAB 3 / CHAPTER 3 / Video Tutorial untuk seksi Admin HR.",
+      "html": "<span class=\"ds-badge-admin\">BAB 3</span>",
+      "css": ".ds-badge-admin { display: inline-flex; align-items: center; gap: 6px; background: #fff7ed; color: #f97316; padding: 6px 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 9999px; }"
+    },
+    {
+      "name": "Employee Badge",
+      "kind": "chip",
+      "refersTo": "badge-employee",
+      "description": "Label BAB 2 / CHAPTER 2 / Video Tutorial untuk seksi Karyawan.",
+      "html": "<span class=\"ds-badge-employee\">BAB 2</span>",
+      "css": ".ds-badge-employee { display: inline-flex; align-items: center; gap: 6px; background: #f0fdfa; color: #0d9488; padding: 6px 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 9999px; }"
+    },
+    {
+      "name": "Accordion Item (Admin)",
+      "kind": "card",
+      "refersTo": "accordion-item-open-admin",
+      "description": "Accordion header aktif untuk panduan Admin HR.",
+      "html": "<div class=\"ds-accordion-admin\">\n  <div class=\"ds-accordion-header-admin\">\n    <div class=\"ds-accordion-icon-admin\">\n      <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M23 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/></svg>\n    </div>\n    <div>\n      <div class=\"ds-accordion-label\">BAGIAN 3.1</div>\n      <div class=\"ds-accordion-title\">Kelola Karyawan</div>\n    </div>\n    <div class=\"ds-accordion-chevron-admin\">▲</div>\n  </div>\n</div>",
+      "css": ".ds-accordion-admin { background: #ffffff; border: 1px solid rgba(249,115,22,0.4); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(249,115,22,0.07), 0 4px 6px -2px rgba(249,115,22,0.04); } .ds-accordion-header-admin { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: linear-gradient(to right, rgba(255,247,237,0.8), #ffffff); } .ds-accordion-icon-admin { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: #f97316; display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 4px 6px -1px rgba(249,115,22,0.3); } .ds-accordion-label { font-size: 10px; font-weight: 700; color: #f97316; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; } .ds-accordion-title { font-size: 16px; font-weight: 700; color: #111827; } .ds-accordion-chevron-admin { flex-shrink: 0; margin-left: auto; width: 32px; height: 32px; border-radius: 50%; background: #f97316; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 10px; }"
+    },
+    {
+      "name": "Accordion Item (Employee)",
+      "kind": "card",
+      "refersTo": "accordion-item-open-employee",
+      "description": "Accordion header aktif untuk panduan Karyawan.",
+      "html": "<div class=\"ds-accordion-employee\">\n  <div class=\"ds-accordion-header-employee\">\n    <div class=\"ds-accordion-icon-employee\">\n      <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"/><path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/></svg>\n    </div>\n    <div>\n      <div class=\"ds-accordion-label-emp\">BAGIAN 2.1</div>\n      <div class=\"ds-accordion-title\">Login ke Sistem</div>\n    </div>\n    <div class=\"ds-accordion-chevron-emp\">▲</div>\n  </div>\n</div>",
+      "css": ".ds-accordion-employee { background: #ffffff; border: 1px solid rgba(13,148,136,0.4); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(13,148,136,0.07), 0 4px 6px -2px rgba(13,148,136,0.04); } .ds-accordion-header-employee { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: linear-gradient(to right, rgba(240,253,250,0.8), #ffffff); } .ds-accordion-icon-employee { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: #0d9488; display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 4px 6px -1px rgba(13,148,136,0.3); } .ds-accordion-label-emp { font-size: 10px; font-weight: 700; color: #0d9488; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; } .ds-accordion-chevron-emp { flex-shrink: 0; margin-left: auto; width: 32px; height: 32px; border-radius: 50%; background: #0d9488; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 10px; }"
+    },
+    {
+      "name": "Video Card (Admin)",
+      "kind": "card",
+      "refersTo": "video-card",
+      "description": "Video tutorial lengkap di atas accordion. Split layout: info kiri, video kanan.",
+      "html": "<div class=\"ds-video-card-admin\">\n  <div class=\"ds-video-info\">\n    <span class=\"ds-badge-admin\" style=\"margin-bottom:16px;\">▶ Video Tutorial</span>\n    <h3 class=\"ds-video-title\">Tutorial Lengkap Admin HR</h3>\n    <p class=\"ds-video-desc\">Tonton panduan ringkas sebelum membuka langkah per modul di bawah.</p>\n  </div>\n  <div class=\"ds-video-panel\">\n    <div class=\"ds-video-placeholder\">▶</div>\n  </div>\n</div>",
+      "css": ".ds-video-card-admin { display: grid; grid-template-columns: 1fr 1.45fr; background: #ffffff; border: 1px solid #fed7aa; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(249,115,22,0.08), 0 10px 10px -5px rgba(249,115,22,0.04); } .ds-video-info { padding: 32px; display: flex; flex-direction: column; justify-content: center; } .ds-video-title { font-size: 24px; font-weight: 700; color: #111827; margin: 0 0 12px; line-height: 1.3; } .ds-video-desc { font-size: 14px; color: #6b7280; line-height: 1.6; margin: 0; } .ds-video-panel { background: #030712; padding: 12px; display: flex; align-items: center; justify-content: center; } .ds-video-placeholder { width: 100%; aspect-ratio: 16/9; background: #111827; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #374151; font-size: 48px; }"
+    },
+    {
+      "name": "Step Number Badge",
+      "kind": "custom",
+      "refersTo": "accordion-item",
+      "description": "Nomor langkah dalam daftar panduan. Dua varian warna: admin dan karyawan.",
+      "html": "<ol class=\"ds-step-list\">\n  <li class=\"ds-step\">\n    <span class=\"ds-step-num-admin\">1</span>\n    <span class=\"ds-step-text\">Buka browser dan akses khwarizmi.co.id</span>\n  </li>\n  <li class=\"ds-step\">\n    <span class=\"ds-step-num-admin\">2</span>\n    <span class=\"ds-step-text\">Masukkan Email/Username yang telah didaftarkan</span>\n  </li>\n</ol>",
+      "css": ".ds-step-list { list-style: none; margin: 0; padding: 0 0 0 20px; border-left: 2px solid rgba(249,115,22,0.2); display: flex; flex-direction: column; gap: 12px; } .ds-step { display: flex; gap: 12px; align-items: flex-start; } .ds-step-num-admin { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: #f97316; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(249,115,22,0.3); } .ds-step-text { font-size: 14px; color: #374151; line-height: 1.6; padding-top: 2px; }"
+    },
+    {
+      "name": "Tip Alert",
+      "kind": "custom",
+      "refersTo": "accordion-item",
+      "description": "Callout untuk catatan penting atau peringatan dalam langkah panduan.",
+      "html": "<div class=\"ds-tip\">\n  <svg class=\"ds-tip-icon\" width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"16\" x2=\"12.01\" y2=\"16\"/></svg>\n  <p class=\"ds-tip-text\">Pastikan nomor rekening yang dimasukkan aktif dan sesuai KTP.</p>\n</div>",
+      "css": ".ds-tip { display: flex; gap: 12px; background: #fffbeb; border: 1px solid rgba(251,191,36,0.6); border-radius: 12px; padding: 16px; margin-top: 20px; } .ds-tip-icon { color: #f59e0b; flex-shrink: 0; margin-top: 1px; } .ds-tip-text { font-size: 14px; color: #92400e; line-height: 1.6; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Buku Panduan yang Hidup",
+    "overview": "Sistem visual ini bertindak seperti dokumentasi cetak berkualitas tinggi yang bisa diinteraksi. Bukan software dashboard, bukan brosur pemasaran — melainkan manual teknis yang hangat. Setiap halaman terasa terstruktur dan otoritatif, tapi tidak pernah mengintimidasi.\n\nSistem ini mengoperasikan dua jalur warna yang berbeda sebagai sistem orientasi: Amber Tegas (#f97316) untuk segala sesuatu yang berkaitan dengan Admin HR, dan Zamrud Tenang (#0d9488) untuk segala sesuatu yang berkaitan dengan Karyawan. Kedua warna tidak pernah muncul bersamaan dalam satu komponen sebagai aksen.\n\nYang ditolak secara eksplisit: tampilan enterprise/kaku seperti SAP atau Oracle; klon SaaS template dengan hero gradient orange dan tiga kolom fitur seragam; kesantaian startup yang tidak sesuai konteks HR formal.",
+    "keyCharacteristics": [
+      "Dua jalur warna semantik yang tidak tercampur (admin amber ≠ karyawan teal)",
+      "Elevasi flat by default; bayangan muncul hanya sebagai respons state",
+      "Accordion sebagai unit navigasi utama, bukan tab atau sidebar",
+      "Video tutorial sebagai citizen pertama dalam setiap panduan",
+      "Bilingual tanpa layout shift — struktur identik di semua bahasa",
+      "Clip-path reveal di hero; fly transition di konten — motion minimal dan purposeful"
+    ],
+    "rules": [
+      { "name": "The Two-Channel Rule",      "body": "Amber dan Teal tidak pernah muncul bersama sebagai aksen dalam satu komponen. Amber = admin. Teal = karyawan.",                                                   "section": "colors" },
+      { "name": "The Neutral-Tint Rule",     "body": "Tint netral untuk seksi karyawan adalah #f0fdf9 (ke arah teal), bukan krem atau warm-white.",                                                                      "section": "colors" },
+      { "name": "The Flat-by-Default Rule",  "body": "Permukaan datar saat resting. Bayangan muncul hanya sebagai respons state (hover, expanded, focus).",                                                               "section": "elevation" },
+      { "name": "The Single Family Rule",    "body": "Satu typeface di seluruh sistem. Hierarki berasal dari bobot dan ukuran, bukan dari font berbeda.",                                                                 "section": "typography" },
+      { "name": "The Label Ceiling Rule",    "body": "Uppercase dengan letter-spacing hanya untuk label pendek (badge, nomor bab, status tag) — maks 4 kata. Tidak pernah untuk kalimat atau body copy.",               "section": "typography" }
+    ],
+    "dos": [
+      "Do gunakan admin-amber eksklusif untuk elemen Admin HR dan employee-teal eksklusif untuk elemen Karyawan.",
+      "Do pertahankan body text minimum #6b7280 di atas permukaan putih.",
+      "Do gunakan text-wrap: balance pada semua h2 dan h3.",
+      "Do tampilkan bayangan sebagai respons state, bukan dekorasi permanen.",
+      "Do gunakan video sebagai citizen pertama di setiap seksi panduan.",
+      "Do pertahankan tint background seksi Karyawan sebagai #f0fdf9 (teal-wash).",
+      "Do sertakan fallback yang bermakna untuk screenshot yang gagal dimuat.",
+      "Do tes setiap perubahan di mobile (375px) sebelum mendeklarasikan selesai."
+    ],
+    "donts": [
+      "Don't tampilkan Amber dan Teal sebagai aksen bersamaan dalam satu komponen.",
+      "Don't gunakan tampilan enterprise/kaku seperti SAP, Oracle, atau Workday.",
+      "Don't salin template SaaS generik dengan hero gradient orange dan tiga kolom fitur seragam.",
+      "Don't gunakan border-left lebih dari 1px sebagai aksen warna dekoratif pada card atau list item.",
+      "Don't gunakan background-clip: text dengan gradient. Gunakan warna solid.",
+      "Don't tambahkan font family kedua atau ketiga tanpa alasan semantik yang sangat kuat.",
+      "Don't gunakan uppercase body copy — hanya untuk label pendek (≤4 kata).",
+      "Don't tampilkan hero heading di atas 4rem (64px).",
+      "Don't tambahkan shadow permanen ke semua card — bayangan kehilangan maknanya ketika ada di mana-mana."
+    ]
+  }
+}

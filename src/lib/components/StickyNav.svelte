@@ -29,7 +29,7 @@
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex items-center justify-between h-16">
 			<!-- Logo -->
-			<a href="#" class="flex items-center gap-3">
+			<a href="#main-content" class="flex items-center gap-3">
 				<img src={logo} alt="Al-Khwarizmi" class="h-8 w-auto" />
 				<div class="leading-tight">
 					<div class="text-sm font-bold {scrolled ? 'text-gray-900' : 'text-gray-900'}">HRIS</div>
@@ -44,7 +44,7 @@
 						href={link.href}
 						class="px-3 py-2 text-sm font-medium transition-colors rounded-lg
 						{scrolled
-							? 'text-gray-600 hover:text-[#f97316] hover:bg-orange-50'
+							? 'text-orange-950 hover:text-[#f97316] hover:bg-orange-50'
 							: 'text-gray-700 hover:text-[#f97316] hover:bg-white/50'}"
 					>
 						{link.label}
@@ -56,7 +56,7 @@
 					onclick={() => lang.update(l => l === 'id' ? 'en' : 'id')}
 					class="ml-2 flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-bold tracking-wider transition-all
 					{scrolled
-						? 'border-gray-200 text-gray-600 hover:border-[#0d9488] hover:text-[#0d9488] bg-white'
+						? 'border-gray-200 text-gray-700 hover:border-[#0d9488] hover:text-[#0d9488] bg-white'
 						: 'border-white/40 text-gray-700 hover:border-[#0d9488] hover:text-[#0d9488] bg-white/20'}"
 					title="Switch language"
 				>
@@ -84,9 +84,9 @@
 				<!-- Language toggle mobile -->
 				<button
 					onclick={() => lang.update(l => l === 'id' ? 'en' : 'id')}
-					class="flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs font-bold tracking-wider transition-all
+					class="flex items-center gap-1 px-3 py-2 min-h-[44px] rounded-lg border text-xs font-bold tracking-wider transition-all
 					{scrolled
-						? 'border-gray-200 text-gray-600 bg-white'
+						? 'border-gray-200 text-gray-700 bg-white'
 						: 'border-gray-300 text-gray-700 bg-white/20'}"
 				>
 					{$lang === 'id' ? 'EN' : 'ID'}
@@ -94,7 +94,7 @@
 				<!-- Hamburger -->
 				<button
 					onclick={() => (mobileOpen = !mobileOpen)}
-					class="p-2 rounded-lg transition-colors
+					class="p-2.5 rounded-lg transition-colors
 					{scrolled ? 'text-gray-500 hover:bg-gray-100' : 'text-gray-700 hover:bg-white/40'}"
 					aria-label="Toggle menu"
 				>
@@ -115,7 +115,7 @@
 				<a
 					href={link.href}
 					onclick={() => (mobileOpen = false)}
-					class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-[#f97316] hover:bg-orange-50 rounded-lg transition-colors"
+					class="block px-4 py-2.5 text-sm font-medium text-orange-950 hover:text-[#f97316] hover:bg-orange-50 rounded-lg transition-colors"
 				>
 					{link.label}
 				</a>

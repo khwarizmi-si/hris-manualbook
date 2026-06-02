@@ -22,7 +22,7 @@
 						<div class="text-[#14b8a6] text-xs font-medium">Al-Khwarizmi</div>
 					</div>
 				</div>
-				<p class="text-sm leading-relaxed text-gray-500 max-w-xs">
+				<p class="text-sm leading-relaxed text-gray-400 max-w-xs">
 					{tr.brand_desc}
 				</p>
 				<div class="mt-5 h-0.5 w-12 rounded-full bg-gradient-to-r from-[#0d9488] to-[#f97316]"></div>
@@ -36,7 +36,7 @@
 						<li>
 							<a
 								href={link.href}
-								class="group inline-flex items-center gap-2 text-gray-500 hover:text-[#14b8a6] transition-colors"
+								class="group inline-flex items-center gap-2 text-gray-400 hover:text-[#14b8a6] transition-colors"
 							>
 								<ArrowRight size={12} class="text-gray-600 group-hover:text-[#14b8a6] group-hover:translate-x-0.5 transition-all" />
 								{link.label}
@@ -51,7 +51,7 @@
 				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">{tr.module_heading}</h4>
 				<ul class="space-y-3 text-sm">
 					{#each tr.module_list as mod}
-						<li class="text-gray-600 text-sm">{mod}</li>
+						<li class="text-gray-400 text-sm">{mod}</li>
 					{/each}
 				</ul>
 			</div>
@@ -59,7 +59,7 @@
 			<!-- Info -->
 			<div>
 				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">{tr.info_heading}</h4>
-				<ul class="space-y-3 text-sm text-gray-500">
+				<ul class="space-y-3 text-sm text-gray-400">
 					<li class="flex items-center gap-2">
 						<span class="w-1.5 h-1.5 rounded-full bg-[#0d9488]"></span>
 						{tr.version}
@@ -82,7 +82,7 @@
 							href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex items-center gap-1.5 text-gray-500 hover:text-[#f97316] transition-colors text-sm mt-1"
+							class="inline-flex items-center gap-1.5 text-gray-400 hover:text-[#f97316] transition-colors text-sm mt-1"
 						>
 							<Phone size={12} />
 							+62 812-8225-1136
@@ -93,7 +93,7 @@
 		</div>
 
 		<!-- Bottom bar -->
-		<div class="border-t border-gray-800/60 pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
+		<div class="border-t border-gray-800/60 pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-500">
 			<p>{tr.bottom1}</p>
 			<p>{tr.bottom2}</p>
 		</div>

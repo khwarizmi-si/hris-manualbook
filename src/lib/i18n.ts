@@ -89,6 +89,11 @@ export const t = {
 			desc: 'Panduan lengkap bagi semua karyawan untuk menggunakan fitur-fitur HRIS sehari-hari.',
 			screenshot_pending: 'Screenshot belum tersedia',
 			video_tutorial: 'Video Tutorial',
+			tutorial_video: {
+				badge: 'Video Tutorial',
+				title: 'Tutorial Lengkap Panduan Karyawan',
+				desc: 'Tonton panduan ringkas untuk memahami alur penggunaan HRIS sehari-hari sebelum membuka langkah per fitur di bawah.'
+			},
 			guides: [
 				{
 					id: '2.1',
@@ -202,6 +207,11 @@ export const t = {
 			desc_end: ' yang memiliki akses penuh ke seluruh modul pengelolaan SDM.',
 			screenshot_pending: 'Screenshot belum tersedia',
 			video_tutorial: 'Video Tutorial',
+			tutorial_video: {
+				badge: 'Video Tutorial',
+				title: 'Tutorial Lengkap Admin HR',
+				desc: 'Tonton panduan ringkas untuk memahami alur utama Admin HR sebelum membuka langkah per modul di bawah.'
+			},
 			guides: [
 				{
 					id: '3.1',
@@ -573,6 +583,11 @@ export const t = {
 			desc: 'Complete guide for all employees to use HRIS features daily.',
 			screenshot_pending: 'Screenshot not yet available',
 			video_tutorial: 'Video Tutorial',
+			tutorial_video: {
+				badge: 'Video Tutorial',
+				title: 'Complete Employee Guide Tutorial',
+				desc: 'Watch this short guide to understand the main daily HRIS workflow before opening the feature-by-feature steps below.'
+			},
 			guides: [
 				{
 					id: '2.1',
@@ -686,6 +701,11 @@ export const t = {
 			desc_end: ' role who have full access to all HR management modules.',
 			screenshot_pending: 'Screenshot not yet available',
 			video_tutorial: 'Video Tutorial',
+			tutorial_video: {
+				badge: 'Video Tutorial',
+				title: 'Complete HR Admin Tutorial',
+				desc: 'Watch this short guide to understand the main HR Admin workflow before opening the module-by-module steps below.'
+			},
 			guides: [
 				{
 					id: '3.1',

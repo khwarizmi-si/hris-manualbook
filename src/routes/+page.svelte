@@ -13,15 +13,18 @@
 	import FooterSection from '$lib/components/FooterSection.svelte';
 </script>
 
+<a href="#main-content" class="skip-link">Lewati ke konten utama</a>
 <StickyNav />
-<HeroSection />
-<AboutSection />
-<ModuleSection />
-<EmployeeGuideSection />
-<AdminGuideSection />
-<SettingSection />
-<WorkflowSection />
-<TroubleshootingSection />
-<GlossarySection />
-<CtaSection />
+<main id="main-content">
+	<HeroSection />
+	<AboutSection />
+	<ModuleSection />
+	<EmployeeGuideSection />
+	<AdminGuideSection />
+	<SettingSection />
+	<WorkflowSection />
+	<TroubleshootingSection />
+	<GlossarySection />
+	<CtaSection />
+</main>
 <FooterSection />

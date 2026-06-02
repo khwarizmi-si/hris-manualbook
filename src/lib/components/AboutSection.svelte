@@ -66,7 +66,7 @@
 	<div class="container mx-auto max-w-6xl relative z-10">
 		<!-- Heading -->
 		<div class="flex flex-col items-center mb-6 stagger-parent" class:in-view={isVisible}>
-			<h2 class="text-3xl sm:text-4xl md:text-5xl font-light mb-4 text-center text-gray-900 stagger-2">
+			<h2 class="text-3xl sm:text-4xl md:text-5xl font-light mb-4 text-center text-gray-900 text-balance stagger-2">
 				{tr.heading_plain}<span class="font-bold text-[#0d9488]">{tr.heading_accent}</span>{tr.heading_end}
 			</h2>
 			<div class="accent-line stagger-3" class:expanded={isVisible}></div>
@@ -118,9 +118,11 @@
 
 					<div class="rounded-2xl overflow-hidden shadow-2xl relative">
 						<img
-							src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=750&fit=crop"
+							src="/present-khwarizmi.webp"
 							alt="Tim HR Al-Khwarizmi"
 							class="w-full h-full object-cover"
+							loading="lazy"
+							decoding="async"
 							style="height: 480px;"
 						/>
 						<div
@@ -186,7 +188,7 @@
 		>
 			<div>
 				<h3 class="text-2xl font-bold text-white mb-1">{tr.cta_heading}</h3>
-				<p class="text-teal-100 text-sm">{tr.cta_sub}</p>
+				<p class="text-white/90 text-sm">{tr.cta_sub}</p>
 			</div>
 			<a
 				href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
@@ -221,23 +223,23 @@
 
 	.accent-line {
 		height: 3px;
-		width: 0;
+		width: 96px;
 		background: linear-gradient(90deg, #0d9488, #f97316);
 		border-radius: 2px;
-		transition: width 0.9s ease 0.5s;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.9s ease 0.5s;
 	}
-	.accent-line.expanded { width: 96px; }
+	.accent-line.expanded { transform: scaleX(1); }
 
 	.stagger-parent .stagger-2,
-	.stagger-parent .stagger-3,
-	.stagger-parent .stagger-4 {
+	.stagger-parent .stagger-3 {
 		opacity: 0;
 		transform: translateY(16px);
 		transition: opacity 0.6s ease, transform 0.6s ease;
 	}
 	.stagger-parent.in-view .stagger-2 { opacity: 1; transform: none; transition-delay: 0.25s; }
 	.stagger-parent.in-view .stagger-3 { opacity: 1; transform: none; transition-delay: 0.45s; }
-	.stagger-parent.in-view .stagger-4 { opacity: 1; transform: none; transition-delay: 0.3s; }
 
 	.service-item {
 		opacity: 0;
