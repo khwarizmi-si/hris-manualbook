@@ -18,7 +18,7 @@
 	role="banner"
 >
 	<!-- Subtle blob top-left -->
-	<div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-[#0d9488]/8 blur-3xl pointer-events-none"></div>
+	<div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-brand-teal/8 blur-3xl pointer-events-none"></div>
 
 	<!-- Left Side: Content -->
 	<div class="relative z-10 flex w-full flex-col justify-between p-8 md:w-1/2 md:p-12 lg:w-3/5 lg:p-16">
@@ -30,14 +30,14 @@
 						<img src={logo} alt="Al-Khwarizmi" class="h-10 w-auto" />
 						<div class="leading-tight">
 							<p class="text-base font-bold text-gray-900">HRIS</p>
-							<p class="text-xs tracking-wider text-[#0d9488] font-medium">Al-Khwarizmi</p>
+							<p class="text-xs tracking-wider text-brand-teal font-medium">Al-Khwarizmi</p>
 						</div>
 					</div>
 				</header>
 
 				<!-- Slogan -->
 				<div in:fly={{ y: 20, duration: 500, delay: 250 }} class="mb-5">
-					<span class="text-xs font-bold tracking-[0.2em] text-[#0d9488] uppercase">
+					<span class="text-xs font-bold tracking-[0.2em] text-brand-teal-dark uppercase">
 						{tr.slogan}
 					</span>
 				</div>
@@ -49,8 +49,8 @@
 					style="font-size: clamp(36px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance;"
 				>
 					Manual Book<br />
-					<span class="text-[#f97316]">HRIS</span>
-					<span class="block text-gray-400" style="font-size: 0.6em; font-weight: 700; margin-top: 6px;">
+					<span class="text-brand-orange">HRIS</span>
+					<span class="block text-gray-500" style="font-size: 0.6em; font-weight: 700; margin-top: 6px;">
 						Al-Khwarizmi
 					</span>
 				</h1>
@@ -58,7 +58,7 @@
 				<!-- Accent bar -->
 				<div
 					in:fly={{ x: -20, duration: 600, delay: 400 }}
-					class="my-6 h-1 w-20 bg-[#0d9488] rounded-full"
+					class="my-6 h-1 w-20 bg-brand-teal rounded-full"
 				></div>
 
 				<!-- Subtitle -->
@@ -73,7 +73,7 @@
 				<a
 					in:fly={{ y: 20, duration: 500, delay: 520 }}
 					href="#panduan-karyawan"
-					class="inline-block text-sm font-bold tracking-[0.2em] text-[#c2410c] transition-colors hover:text-[#9a3412] uppercase"
+					class="inline-block text-sm font-bold tracking-[0.2em] text-orange-700 transition-colors hover:text-orange-800 uppercase"
 				>
 					{tr.cta}
 				</a>
@@ -83,15 +83,15 @@
 			<footer in:fly={{ y: 20, duration: 500, delay: 650 }} class="mt-12 pt-6 border-t border-gray-100">
 				<div class="grid grid-cols-1 gap-4 text-xs text-gray-500 sm:grid-cols-3">
 					<div class="flex items-center gap-2">
-						<Globe size={14} class="text-[#0d9488] flex-shrink-0" />
+						<Globe size={14} class="text-brand-teal flex-shrink-0" />
 						<span>khwarizmi.co.id</span>
 					</div>
 					<div class="flex items-center gap-2">
-						<Phone size={14} class="text-[#0d9488] flex-shrink-0" />
+						<Phone size={14} class="text-brand-teal flex-shrink-0" />
 						<span>+62 812-8225-1136</span>
 					</div>
 					<div class="flex items-center gap-2">
-						<MapPin size={14} class="text-[#0d9488] flex-shrink-0" />
+						<MapPin size={14} class="text-brand-teal flex-shrink-0" />
 						<span>Indonesia</span>
 					</div>
 				</div>

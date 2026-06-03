@@ -33,7 +33,7 @@
 				<img src={logo} alt="Al-Khwarizmi" class="h-8 w-auto" />
 				<div class="leading-tight">
 					<div class="text-sm font-bold {scrolled ? 'text-gray-900' : 'text-gray-900'}">HRIS</div>
-					<div class="text-xs text-[#0d9488] font-medium">Al-Khwarizmi</div>
+					<div class="text-xs text-brand-teal font-medium">Al-Khwarizmi</div>
 				</div>
 			</a>
 
@@ -44,8 +44,8 @@
 						href={link.href}
 						class="px-3 py-2 text-sm font-medium transition-colors rounded-lg
 						{scrolled
-							? 'text-orange-950 hover:text-[#f97316] hover:bg-orange-50'
-							: 'text-gray-700 hover:text-[#f97316] hover:bg-white/50'}"
+							? 'text-orange-950 hover:text-brand-orange hover:bg-orange-50'
+							: 'text-gray-700 hover:text-brand-orange hover:bg-white/50'}"
 					>
 						{link.label}
 					</a>
@@ -56,8 +56,8 @@
 					onclick={() => lang.update(l => l === 'id' ? 'en' : 'id')}
 					class="ml-2 flex items-center gap-1 px-3 py-1.5 rounded-lg border text-xs font-bold tracking-wider transition-all
 					{scrolled
-						? 'border-gray-200 text-gray-700 hover:border-[#0d9488] hover:text-[#0d9488] bg-white'
-						: 'border-white/40 text-gray-700 hover:border-[#0d9488] hover:text-[#0d9488] bg-white/20'}"
+						? 'border-gray-200 text-gray-700 hover:border-brand-teal hover:text-brand-teal bg-white'
+						: 'border-white/40 text-gray-700 hover:border-brand-teal hover:text-brand-teal bg-white/20'}"
 					title="Switch language"
 				>
 					{#if $lang === 'id'}
@@ -71,7 +71,7 @@
 					href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="ml-3 inline-flex items-center gap-1.5 px-4 py-2 bg-[#f97316] hover:bg-[#ea6c0a]
+					class="ml-3 inline-flex items-center gap-1.5 px-4 py-2 bg-brand-orange hover:bg-brand-orange-dark
 					text-white text-sm font-semibold rounded-lg transition-colors shadow-sm"
 				>
 					{tr.nav.demo}
@@ -115,7 +115,7 @@
 				<a
 					href={link.href}
 					onclick={() => (mobileOpen = false)}
-					class="block px-4 py-2.5 text-sm font-medium text-orange-950 hover:text-[#f97316] hover:bg-orange-50 rounded-lg transition-colors"
+					class="block px-4 py-2.5 text-sm font-medium text-orange-950 hover:text-brand-orange hover:bg-orange-50 rounded-lg transition-colors"
 				>
 					{link.label}
 				</a>
@@ -124,7 +124,7 @@
 				href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="flex items-center justify-center gap-1.5 mt-2 px-4 py-2.5 bg-[#f97316] text-white text-sm font-semibold rounded-xl"
+				class="flex items-center justify-center gap-1.5 mt-2 px-4 py-2.5 bg-brand-orange text-white text-sm font-semibold rounded-xl"
 			>
 				{tr.nav.demo} <MessageCircle size={14} />
 			</a>

@@ -27,7 +27,7 @@ body {
 	z-index: 100;
 	transform: translateY(-150%);
 	border-radius: 0.75rem;
-	background: #0d9488;
+	background: var(--color-brand-teal);
 	padding: 0.75rem 1rem;
 	color: #ffffff;
 	font-size: 0.875rem;
@@ -38,14 +38,14 @@ body {
 
 .skip-link:focus {
 	transform: translateY(0);
-	outline: 3px solid #fbbf24;
+	outline: 3px solid var(--color-brand-amber);
 	outline-offset: 2px;
 }
 
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
-	outline: 2px solid #fbbf24;
+	outline: 2px solid var(--color-brand-amber);
 	outline-offset: 2px;
 	border-radius: 4px;
 }

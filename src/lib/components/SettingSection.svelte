@@ -33,17 +33,17 @@
 	style="background: linear-gradient(180deg, #ffffff 0%, #f0fdf9 50%, #ffffff 100%);"
 >
 	<!-- Blobs -->
-	<div class="absolute top-10 right-10 w-80 h-80 rounded-full bg-[#0d9488]/5 blur-3xl pointer-events-none"></div>
-	<div class="absolute bottom-10 left-0 w-72 h-72 rounded-full bg-[#f97316]/4 blur-3xl pointer-events-none"></div>
+	<div class="absolute top-10 right-10 w-80 h-80 rounded-full bg-brand-teal/5 blur-3xl pointer-events-none"></div>
+	<div class="absolute bottom-10 left-0 w-72 h-72 rounded-full bg-brand-orange/4 blur-3xl pointer-events-none"></div>
 
 	<div class="max-w-7xl mx-auto relative z-10">
 		<!-- Heading -->
 		<div class="flex flex-col items-center text-center mb-16 section-header" class:in-view={isVisible}>
-			<div class="inline-flex items-center gap-2 bg-teal-50 text-[#0d9488] text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
+			<div class="inline-flex items-center gap-2 bg-teal-50 text-brand-teal-dark text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
 				{tr.badge}
 			</div>
-			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				{tr.heading_plain}<span class="text-[#0d9488]">{tr.heading_accent}</span>
+			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-balance">
+				{tr.heading_plain}<span class="text-brand-teal">{tr.heading_accent}</span>
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
 			<p class="mt-6 text-lg text-gray-500 max-w-2xl leading-relaxed">
@@ -67,8 +67,8 @@
 
 					<div class="relative">
 						<div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center transition-transform duration-300 group-hover:scale-110
-							{s.color === 'teal' ? 'bg-[#0d9488]/10' : 'bg-[#f97316]/10'}">
-							<s.icon size={22} class={s.color === 'teal' ? 'text-[#0d9488]' : 'text-[#f97316]'} />
+							{s.color === 'teal' ? 'bg-brand-teal/10' : 'bg-brand-orange/10'}">
+							<s.icon size={22} class={s.color === 'teal' ? 'text-brand-teal' : 'text-brand-orange'} />
 						</div>
 						<h3 class="text-base font-bold text-gray-900 mb-2">{s.title}</h3>
 						<p class="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
@@ -98,12 +98,12 @@
 							<tr class="border-t border-gray-100 hover:bg-gray-50/70 transition-colors {i % 2 === 1 ? 'bg-gray-50/40' : 'bg-white'}">
 								<td class="px-6 py-5 font-semibold text-gray-900 whitespace-nowrap align-top">
 									<span class="inline-flex items-center gap-2">
-										<span class="w-2.5 h-2.5 rounded-full flex-shrink-0 {row.dot === 'orange' ? 'bg-[#f97316]' : 'bg-[#0d9488]'}"></span>
+										<span class="w-2.5 h-2.5 rounded-full flex-shrink-0 {row.dot === 'orange' ? 'bg-brand-orange' : 'bg-brand-teal'}"></span>
 										{row.role}
 									</span>
 								</td>
 								<td class="px-6 py-5 text-gray-600 align-top leading-relaxed">{row.access}</td>
-								<td class="px-6 py-5 text-gray-400 text-xs align-top leading-relaxed">{row.limit}</td>
+								<td class="px-6 py-5 text-gray-500 text-xs align-top leading-relaxed">{row.limit}</td>
 							</tr>
 						{/each}
 					</tbody>

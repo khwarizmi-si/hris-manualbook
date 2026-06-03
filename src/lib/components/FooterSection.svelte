@@ -9,7 +9,7 @@
 
 <footer class="relative bg-gray-950 text-gray-400 pt-16 pb-8 overflow-hidden">
 	<div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0d9488]/40 to-transparent"></div>
-	<div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#0d9488]/5 blur-3xl pointer-events-none"></div>
+	<div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-teal/5 blur-3xl pointer-events-none"></div>
 
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 		<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
@@ -19,7 +19,7 @@
 					<img src={logo} alt="Al-Khwarizmi" class="h-10 w-auto" />
 					<div>
 						<div class="text-white font-bold text-sm leading-tight">HRIS</div>
-						<div class="text-[#14b8a6] text-xs font-medium">Al-Khwarizmi</div>
+						<div class="text-brand-teal-light text-xs font-medium">Al-Khwarizmi</div>
 					</div>
 				</div>
 				<p class="text-sm leading-relaxed text-gray-400 max-w-xs">
@@ -36,9 +36,9 @@
 						<li>
 							<a
 								href={link.href}
-								class="group inline-flex items-center gap-2 text-gray-400 hover:text-[#14b8a6] transition-colors"
+								class="group inline-flex items-center gap-2 text-gray-400 hover:text-brand-teal-light transition-colors"
 							>
-								<ArrowRight size={12} class="text-gray-600 group-hover:text-[#14b8a6] group-hover:translate-x-0.5 transition-all" />
+								<ArrowRight size={12} class="text-gray-600 group-hover:text-brand-teal-light group-hover:translate-x-0.5 transition-all" />
 								{link.label}
 							</a>
 						</li>
@@ -61,11 +61,11 @@
 				<h4 class="text-white font-semibold mb-5 text-sm tracking-wide">{tr.info_heading}</h4>
 				<ul class="space-y-3 text-sm text-gray-400">
 					<li class="flex items-center gap-2">
-						<span class="w-1.5 h-1.5 rounded-full bg-[#0d9488]"></span>
+						<span class="w-1.5 h-1.5 rounded-full bg-brand-teal"></span>
 						{tr.version}
 					</li>
 					<li class="flex items-center gap-2">
-						<span class="w-1.5 h-1.5 rounded-full bg-[#f97316]"></span>
+						<span class="w-1.5 h-1.5 rounded-full bg-brand-orange"></span>
 						{tr.year}
 					</li>
 					<li class="pt-2">
@@ -73,7 +73,7 @@
 							href="https://khwarizmi.co.id"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex items-center gap-1.5 text-[#14b8a6] hover:text-[#f97316] transition-colors font-medium text-sm"
+							class="inline-flex items-center gap-1.5 text-brand-teal-light hover:text-brand-orange transition-colors font-medium text-sm"
 						>
 							khwarizmi.co.id
 							<ExternalLink size={12} />
@@ -82,7 +82,7 @@
 							href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="inline-flex items-center gap-1.5 text-gray-400 hover:text-[#f97316] transition-colors text-sm mt-1"
+							class="inline-flex items-center gap-1.5 text-gray-400 hover:text-brand-orange transition-colors text-sm mt-1"
 						>
 							<Phone size={12} />
 							+62 812-8225-1136
@@ -93,7 +93,7 @@
 		</div>
 
 		<!-- Bottom bar -->
-		<div class="border-t border-gray-800/60 pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-500">
+		<div class="border-t border-gray-800/60 pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-400">
 			<p>{tr.bottom1}</p>
 			<p>{tr.bottom2}</p>
 		</div>

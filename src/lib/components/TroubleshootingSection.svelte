@@ -29,7 +29,7 @@
 >
 	<!-- Blobs -->
 	<div class="absolute top-10 left-0 w-80 h-80 rounded-full bg-red-50/60 blur-3xl pointer-events-none"></div>
-	<div class="absolute bottom-10 right-0 w-72 h-72 rounded-full bg-[#0d9488]/5 blur-3xl pointer-events-none"></div>
+	<div class="absolute bottom-10 right-0 w-72 h-72 rounded-full bg-brand-teal/5 blur-3xl pointer-events-none"></div>
 
 	<div class="max-w-7xl mx-auto relative z-10">
 		<!-- Heading -->
@@ -37,7 +37,7 @@
 			<div class="inline-flex items-center gap-2 bg-red-50 text-red-700 text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
 				{tr.badge}
 			</div>
-			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-balance">
 				<span class="text-red-500">{tr.heading_accent}</span>{tr.heading_plain}
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
@@ -51,7 +51,7 @@
 			{#each tr.issues as row, i}
 				<div
 					class="issue-card group bg-white rounded-2xl border border-gray-100 p-5
-					hover:shadow-xl hover:-translate-y-1 hover:border-[#0d9488]/20 transition-all duration-300 overflow-hidden"
+					hover:shadow-xl hover:-translate-y-1 hover:border-brand-teal/20 transition-all duration-300 overflow-hidden"
 					class:in-view={isVisible}
 					style="animation-delay: {i * 60}ms;"
 				>
@@ -62,10 +62,10 @@
 						</div>
 						<div class="flex-1 min-w-0">
 							<h4 class="text-sm font-bold text-gray-900 mb-1">{row.issue}</h4>
-							<p class="text-xs text-gray-400 mb-3 leading-relaxed">{tr.col_cause}: {row.cause}</p>
+							<p class="text-xs text-gray-500 mb-3 leading-relaxed">{tr.col_cause}: {row.cause}</p>
 							<div class="flex items-start gap-2 bg-teal-50/70 rounded-xl px-3 py-2.5">
-								<CheckCircle2 size={14} class="text-[#0d9488] flex-shrink-0 mt-0.5" />
-								<p class="text-xs text-[#0d9488] font-semibold leading-relaxed">{row.solution}</p>
+								<CheckCircle2 size={14} class="text-brand-teal flex-shrink-0 mt-0.5" />
+								<p class="text-xs text-brand-teal-dark font-semibold leading-relaxed">{row.solution}</p>
 							</div>
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 
 		<!-- Contact section -->
 		<div class="contact-wrap max-w-3xl mx-auto" class:in-view={isVisible}>
-			<p class="text-center text-sm text-gray-400 font-medium mb-6 uppercase tracking-widest">{tr.contact_heading}</p>
+			<p class="text-center text-sm text-gray-500 font-medium mb-6 uppercase tracking-widest">{tr.contact_heading}</p>
 			<div class="grid sm:grid-cols-3 gap-5">
 				{#each contacts as contact, i}
 					<div
@@ -87,14 +87,14 @@
 					>
 						<div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center transition-all duration-300
 							{contact.color === 'teal'
-								? 'bg-teal-100 group-hover:bg-[#0d9488]'
-								: 'bg-orange-100 group-hover:bg-[#f97316]'}">
+								? 'bg-teal-100 group-hover:bg-brand-teal'
+								: 'bg-orange-100 group-hover:bg-brand-orange'}">
 							<contact.icon size={22} class="transition-colors duration-300
-								{contact.color === 'teal' ? 'text-[#0d9488] group-hover:text-white' : 'text-[#f97316] group-hover:text-white'}" />
+								{contact.color === 'teal' ? 'text-brand-teal group-hover:text-white' : 'text-brand-orange group-hover:text-white'}" />
 						</div>
 						<div class="text-sm font-bold text-gray-900 mb-1">{contact.label}</div>
 						<div class="text-sm font-medium transition-colors duration-300
-							{contact.color === 'teal' ? 'text-[#0d9488] group-hover:text-[#f97316]' : 'text-[#f97316] group-hover:text-[#0d9488]'}">
+							{contact.color === 'teal' ? 'text-brand-teal group-hover:text-brand-orange' : 'text-brand-orange group-hover:text-brand-teal'}">
 							{contact.value}
 						</div>
 					</div>

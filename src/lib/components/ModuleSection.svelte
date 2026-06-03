@@ -32,18 +32,18 @@
 	const roleColors = ['teal', 'blue', 'violet', 'orange'];
 
 	const badgeCls: Record<Level, string> = {
-		full:     'bg-teal-50 text-[#0d9488] border border-teal-200',
+		full:     'bg-teal-50 text-brand-teal border border-teal-200',
 		submit:   'bg-blue-50 text-blue-600 border border-blue-200',
-		approval: 'bg-orange-50 text-[#f97316] border border-orange-200',
+		approval: 'bg-orange-50 text-brand-orange border border-orange-200',
 		manage:   'bg-gray-900 text-white border border-gray-800',
 		none:     'text-gray-300',
 	};
 
 	const roleHeaderCls: Record<string, string> = {
-		teal:   'bg-teal-50 text-[#0d9488]',
+		teal:   'bg-teal-50 text-brand-teal',
 		blue:   'bg-blue-50 text-blue-600',
 		violet: 'bg-violet-50 text-violet-600',
-		orange: 'bg-orange-50 text-[#f97316]',
+		orange: 'bg-orange-50 text-brand-orange',
 	};
 
 	let tr = $derived(t[$lang].module);
@@ -81,17 +81,14 @@
 	style="background: linear-gradient(180deg, #ffffff 0%, #f0fdf9 60%, #ffffff 100%);"
 >
 	<!-- Decorative blobs -->
-	<div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#0d9488]/5 blur-3xl pointer-events-none"></div>
-	<div class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-[#f97316]/5 blur-3xl pointer-events-none"></div>
+	<div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-brand-teal/5 blur-3xl pointer-events-none"></div>
+	<div class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-brand-orange/5 blur-3xl pointer-events-none"></div>
 
 	<div class="max-w-5xl mx-auto relative z-10">
 		<!-- Heading -->
 		<div class="flex flex-col items-center text-center mb-12 section-header" class:in-view={isVisible}>
-			<div class="inline-flex items-center gap-2 bg-orange-50 text-[#f97316] text-xs font-bold px-4 py-2 rounded-full mb-5 tracking-wide uppercase">
-				{tr.badge}
-			</div>
-			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-				{tr.heading_plain}<span class="text-[#0d9488]">{tr.heading_accent}</span>
+			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-balance">
+				{tr.heading_plain}<span class="text-brand-teal">{tr.heading_accent}</span>
 			</h2>
 			<div class="accent-line" class:expanded={isVisible}></div>
 			<p class="mt-6 text-lg text-gray-500 max-w-2xl leading-relaxed">
@@ -107,7 +104,7 @@
 					{b.label}
 				</span>
 			{/each}
-			<span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full text-gray-400 bg-gray-50 border border-gray-200">
+			<span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full text-gray-500 bg-gray-50 border border-gray-200">
 				<Minus size={11} />
 				{tr.no_access}
 			</span>
@@ -159,7 +156,7 @@
 		</div>
 
 		<!-- Footer note -->
-		<p class="text-center text-xs text-gray-400 mt-5 note" class:in-view={isVisible}>
+		<p class="text-center text-xs text-gray-500 mt-5 note" class:in-view={isVisible}>
 			<strong class="text-gray-500">{badge.manage.label}</strong> = {$lang === 'id'
 				? 'akses penuh termasuk melihat, menyetujui, mengedit, dan menghapus data milik semua pengguna.'
 				: 'full access including viewing, approving, editing, and deleting data from all users.'}

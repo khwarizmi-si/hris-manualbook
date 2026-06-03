@@ -6,9 +6,11 @@
 
 	let sectionEl: HTMLElement;
 	let isVisible = $state(false);
+	let mounted = $state(false);
 	let tr = $derived(t[$lang].cta);
 
 	onMount(() => {
+		mounted = true;
 		const obs = new IntersectionObserver(([e]) => { isVisible = e.isIntersecting; }, { threshold: 0.2 });
 		if (sectionEl) obs.observe(sectionEl);
 		return () => obs.disconnect();
@@ -26,13 +28,14 @@
 	<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/3 pointer-events-none"></div>
 
 	<!-- Floating dots -->
-	<div class="absolute top-1/3 left-1/4 w-3 h-3 rounded-full bg-[#f97316]/40 float-dot"></div>
+	<div class="absolute top-1/3 left-1/4 w-3 h-3 rounded-full bg-brand-orange/40 float-dot"></div>
 	<div class="absolute bottom-1/3 right-1/3 w-2 h-2 rounded-full bg-white/30 float-dot-2"></div>
-	<div class="absolute top-2/3 right-1/4 w-4 h-4 rounded-full bg-[#fbbf24]/25 float-dot"></div>
+	<div class="absolute top-2/3 right-1/4 w-4 h-4 rounded-full bg-brand-amber/25 float-dot"></div>
 
 	<div class="max-w-4xl mx-auto text-center relative z-10">
 		<div
 			class="cta-content"
+			class:will-animate={mounted}
 			class:in-view={isVisible}
 		>
 			<!-- Badge -->
@@ -40,8 +43,8 @@
 				{tr.badge}
 			</div>
 
-			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
-				{tr.heading_plain}<span class="text-[#fbbf24]">{tr.heading_accent}</span>{tr.heading_end}
+			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight text-balance">
+				{tr.heading_plain}<span class="text-brand-amber">{tr.heading_accent}</span>{tr.heading_end}
 			</h2>
 			<p class="text-lg text-teal-100/80 mb-10 max-w-2xl mx-auto leading-relaxed">
 				{tr.desc}
@@ -52,7 +55,7 @@
 					href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#f97316] hover:bg-[#ea6c0a]
+					class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-orange hover:bg-brand-orange-dark
 					text-white font-bold rounded-xl transition-all shadow-xl shadow-orange-900/30
 					hover:shadow-2xl hover:-translate-y-0.5 text-base"
 				>
@@ -76,10 +79,10 @@
 
 <style>
 	.cta-content {
-		opacity: 0; transform: translateY(28px);
 		transition: opacity 0.8s ease, transform 0.8s ease;
 	}
-	.cta-content.in-view { opacity: 1; transform: none; }
+	.cta-content.will-animate { opacity: 0; transform: translateY(28px); }
+	.cta-content.will-animate.in-view { opacity: 1; transform: none; }
 
 	.float-dot  { animation: floatUp   3.5s ease-in-out infinite; }
 	.float-dot-2{ animation: floatDown 4.5s ease-in-out infinite; animation-delay: 1s; }
