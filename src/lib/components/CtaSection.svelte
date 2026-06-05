@@ -52,7 +52,7 @@
 
 			<div class="flex flex-col sm:flex-row gap-4 justify-center">
 				<a
-					href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
+					href="https://wa.me/6281282251136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-orange hover:bg-brand-orange-dark

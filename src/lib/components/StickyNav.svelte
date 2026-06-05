@@ -68,7 +68,7 @@
 				</button>
 
 				<a
-					href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
+					href="https://wa.me/6281282251136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="ml-3 inline-flex items-center gap-1.5 px-4 py-2 bg-brand-orange hover:bg-brand-orange-dark
@@ -121,7 +121,7 @@
 				</a>
 			{/each}
 			<a
-				href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
+				href="https://wa.me/6281282251136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="flex items-center justify-center gap-1.5 mt-2 px-4 py-2.5 bg-brand-orange text-white text-sm font-semibold rounded-xl"

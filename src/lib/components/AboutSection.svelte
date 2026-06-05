@@ -186,7 +186,7 @@
 				<p class="text-white/90 text-sm">{tr.cta_sub}</p>
 			</div>
 			<a
-				href="https://wa.me/628128225136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
+				href="https://wa.me/6281282251136?text=Halo%2C+saya+ingin+meminta+demo+HRIS+Al-Khwarizmi"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white
